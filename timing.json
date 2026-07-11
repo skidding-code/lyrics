@@ -7,7 +7,14 @@
    "start": 0.585,
    "end": 2.961,
    "text": "Psst \u2014 I see deadlocks (ayy)",
-   "tts": "Psst ,  I see deadlocks"
+   "tts": "Psst ,  I see deadlocks",
+   "wf": [
+    0.1889,
+    0.3934,
+    0.6074,
+    1.0
+   ],
+   "vdur": 1.511
   },
   {
    "section": "Intro",
@@ -15,7 +22,17 @@
    "start": 2.961,
    "end": 4.743,
    "text": "Terminal glowing, it's four in the morning",
-   "tts": "Terminal glowing, it's four in the morning"
+   "tts": "Terminal glowing, it's four in the morning",
+   "wf": [
+    0.1676,
+    0.3324,
+    0.4662,
+    0.6082,
+    0.7214,
+    0.8172,
+    1.0
+   ],
+   "vdur": 1.713
   },
   {
    "section": "Intro",
@@ -23,7 +40,17 @@
    "start": 4.743,
    "end": 6.526,
    "text": "Plan mode armed, no warnings, we pouring",
-   "tts": "Plan mode armed, no warnings, we pouring"
+   "tts": "Plan mode armed, no warnings, we pouring",
+   "wf": [
+    0.1408,
+    0.2804,
+    0.4261,
+    0.5482,
+    0.747,
+    0.8538,
+    1.0
+   ],
+   "vdur": 1.705
   },
   {
    "section": "Intro",
@@ -31,7 +58,17 @@
    "start": 6.526,
    "end": 7.714,
    "text": "This for everybody with the context exhausted",
-   "tts": "This for everybody with the context exhausted"
+   "tts": "This for everybody with the context exhausted",
+   "wf": [
+    0.1043,
+    0.2104,
+    0.4169,
+    0.5284,
+    0.6018,
+    0.7887,
+    1.0
+   ],
+   "vdur": 1.138
   },
   {
    "section": "Intro",
@@ -39,7 +76,18 @@
    "start": 7.714,
    "end": 8.902,
    "text": "Big model energy, tell 'em who bossed it",
-   "tts": "Big model energy, tell 'em who bossed it"
+   "tts": "Big model energy, tell 'em who bossed it",
+   "wf": [
+    0.1147,
+    0.2697,
+    0.4273,
+    0.5442,
+    0.662,
+    0.7756,
+    0.9116,
+    1.0
+   ],
+   "vdur": 1.123
   },
   {
    "section": "Intro",
@@ -47,7 +95,16 @@
    "start": 8.902,
    "end": 10.09,
    "text": "Shift-tab twice and we off it",
-   "tts": "Shift-tab twice and we off it"
+   "tts": "Shift-tab twice and we off it",
+   "wf": [
+    0.3039,
+    0.4911,
+    0.6347,
+    0.7663,
+    0.8982,
+    1.0
+   ],
+   "vdur": 1.146
   },
   {
    "section": "Verse 1",
@@ -55,7 +112,20 @@
    "start": 10.09,
    "end": 12.466,
    "text": "Plan mode approved and I'm sliding on the diff now",
-   "tts": "Plan mode approved and I'm sliding on the diff now"
+   "tts": "Plan mode approved and I'm sliding on the diff now",
+   "wf": [
+    0.1053,
+    0.212,
+    0.3551,
+    0.4461,
+    0.5379,
+    0.6809,
+    0.7652,
+    0.8313,
+    0.9067,
+    1.0
+   ],
+   "vdur": 2.297
   },
   {
    "section": "Verse 1",
@@ -63,7 +133,17 @@
    "start": 12.466,
    "end": 14.842,
    "text": "Ultrathink on, watch the reasoning get loud",
-   "tts": "Ultrathink on, watch the reasoning get loud"
+   "tts": "Ultrathink on, watch the reasoning get loud",
+   "wf": [
+    0.2551,
+    0.3642,
+    0.5007,
+    0.5861,
+    0.7703,
+    0.8701,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -71,7 +151,17 @@
    "start": 14.842,
    "end": 17.219,
    "text": "Terminal one, terminal two, and a worktree",
-   "tts": "Terminal one, terminal two, and a worktree"
+   "tts": "Terminal one, terminal two, and a worktree",
+   "wf": [
+    0.1645,
+    0.2993,
+    0.4639,
+    0.5616,
+    0.6927,
+    0.7894,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 1",
@@ -79,7 +169,19 @@
    "start": 17.219,
    "end": 19.595,
    "text": "Subagents swarming through the repo like they heard me",
-   "tts": "Subagents swarming through the repo like they heard me"
+   "tts": "Subagents swarming through the repo like they heard me",
+   "wf": [
+    0.2045,
+    0.3558,
+    0.4434,
+    0.5126,
+    0.6243,
+    0.7228,
+    0.8177,
+    0.9166,
+    1.0
+   ],
+   "vdur": 2.293
   },
   {
    "section": "Verse 1",
@@ -87,7 +189,20 @@
    "start": 19.595,
    "end": 21.971,
    "text": "You prompting \"pls fix\" with your fingers all crossed up",
-   "tts": "You prompting \"pls fix\" with your fingers all crossed up"
+   "tts": "You prompting \"pls fix\" with your fingers all crossed up",
+   "wf": [
+    0.0701,
+    0.227,
+    0.3501,
+    0.4508,
+    0.5377,
+    0.6273,
+    0.7636,
+    0.8329,
+    0.9321,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -95,7 +210,18 @@
    "start": 21.971,
    "end": 24.347,
    "text": "I'm shipping whole features while your tab-complete's stuck",
-   "tts": "I'm shipping whole features while your tab-complete's stuck"
+   "tts": "I'm shipping whole features while your tab-complete's stuck",
+   "wf": [
+    0.0926,
+    0.2201,
+    0.3154,
+    0.4577,
+    0.563,
+    0.6645,
+    0.9053,
+    1.0
+   ],
+   "vdur": 2.292
   },
   {
    "section": "Verse 1",
@@ -103,7 +229,17 @@
    "start": 24.347,
    "end": 26.724,
    "text": "Codex on cooldown, rate limit said \"later\"",
-   "tts": "Codex on cooldown, rate limit said \"later\""
+   "tts": "Codex on cooldown, rate limit said \"later\"",
+   "wf": [
+    0.1945,
+    0.306,
+    0.4802,
+    0.6006,
+    0.7316,
+    0.8595,
+    1.0
+   ],
+   "vdur": 2.297
   },
   {
    "section": "Verse 1",
@@ -111,7 +247,16 @@
    "start": 26.724,
    "end": 29.1,
    "text": "Claude clearing backlog like an excavator",
-   "tts": "Claude clearing backlog like an excavator"
+   "tts": "Claude clearing backlog like an excavator",
+   "wf": [
+    0.1535,
+    0.3313,
+    0.519,
+    0.6428,
+    0.751,
+    1.0
+   ],
+   "vdur": 2.243
   },
   {
    "section": "Verse 1",
@@ -119,7 +264,17 @@
    "start": 29.1,
    "end": 31.476,
    "text": "Cursor want credit for a rename refactor",
-   "tts": "Cursor want credit for a rename refactor"
+   "tts": "Cursor want credit for a rename refactor",
+   "wf": [
+    0.1358,
+    0.2801,
+    0.4311,
+    0.5487,
+    0.6327,
+    0.7948,
+    1.0
+   ],
+   "vdur": 2.246
   },
   {
    "section": "Verse 1",
@@ -127,7 +282,19 @@
    "start": 31.476,
    "end": 33.852,
    "text": "Claude did the migration and squashed it, one chapter",
-   "tts": "Claude did the migration and squashed it, one chapter"
+   "tts": "Claude did the migration and squashed it, one chapter",
+   "wf": [
+    0.1208,
+    0.1971,
+    0.2655,
+    0.4471,
+    0.5415,
+    0.6869,
+    0.7551,
+    0.8521,
+    1.0
+   ],
+   "vdur": 2.295
   },
   {
    "section": "Verse 1",
@@ -135,7 +302,19 @@
    "start": 33.852,
    "end": 36.229,
    "text": "GPT wrote a test that asserts true is true",
-   "tts": "GPT wrote a test that asserts true is true"
+   "tts": "GPT wrote a test that asserts true is true",
+   "wf": [
+    0.1832,
+    0.285,
+    0.3602,
+    0.4618,
+    0.5691,
+    0.7222,
+    0.8158,
+    0.9064,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -143,7 +322,17 @@
    "start": 36.229,
    "end": 38.605,
    "text": "Claude caught a race condition nobody knew",
-   "tts": "Claude caught a race condition nobody knew"
+   "tts": "Claude caught a race condition nobody knew",
+   "wf": [
+    0.157,
+    0.2741,
+    0.3646,
+    0.4987,
+    0.6974,
+    0.8885,
+    1.0
+   ],
+   "vdur": 2.115
   },
   {
    "section": "Verse 1",
@@ -151,7 +340,18 @@
    "start": 38.605,
    "end": 40.981,
    "text": "They hallucinate imports from a package that's fictional",
-   "tts": "They hallucinate imports from a package that's fictional"
+   "tts": "They hallucinate imports from a package that's fictional",
+   "wf": [
+    0.0897,
+    0.2671,
+    0.4222,
+    0.5263,
+    0.5928,
+    0.7297,
+    0.8489,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 1",
@@ -159,7 +359,19 @@
    "start": 40.981,
    "end": 43.357,
    "text": "Claude cite the docs page, line number, that's literal",
-   "tts": "Claude cite the docs page, line number, that's literal"
+   "tts": "Claude cite the docs page, line number, that's literal",
+   "wf": [
+    0.1216,
+    0.2232,
+    0.2921,
+    0.4019,
+    0.5101,
+    0.6182,
+    0.7528,
+    0.8783,
+    1.0
+   ],
+   "vdur": 2.277
   },
   {
    "section": "Verse 1",
@@ -167,7 +379,17 @@
    "start": 43.357,
    "end": 45.734,
    "text": "Copilot whispering one line at a time",
-   "tts": "Copilot whispering one line at a time"
+   "tts": "Copilot whispering one line at a time",
+   "wf": [
+    0.2019,
+    0.4123,
+    0.5378,
+    0.6767,
+    0.773,
+    0.863,
+    1.0
+   ],
+   "vdur": 1.97
   },
   {
    "section": "Verse 1",
@@ -175,7 +397,20 @@
    "start": 45.734,
    "end": 48.11,
    "text": "Claude drop a whole PR, tests and lint all fine",
-   "tts": "Claude drop a whole PR, tests and lint all fine"
+   "tts": "Claude drop a whole PR, tests and lint all fine",
+   "wf": [
+    0.1191,
+    0.2149,
+    0.2835,
+    0.3801,
+    0.4912,
+    0.6129,
+    0.7059,
+    0.8093,
+    0.8889,
+    1.0
+   ],
+   "vdur": 2.281
   },
   {
    "section": "Verse 1",
@@ -183,7 +418,18 @@
    "start": 48.11,
    "end": 50.486,
    "text": "Your agent needs babysitting, snacks and a helmet",
-   "tts": "Your agent needs babysitting, snacks and a helmet"
+   "tts": "Your agent needs babysitting, snacks and a helmet",
+   "wf": [
+    0.1062,
+    0.2345,
+    0.3587,
+    0.5533,
+    0.6974,
+    0.7934,
+    0.8643,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -191,7 +437,19 @@
    "start": 50.486,
    "end": 52.862,
    "text": "Mine ran overnight and I woke up to velvet",
-   "tts": "Mine ran overnight and I woke up to velvet"
+   "tts": "Mine ran overnight and I woke up to velvet",
+   "wf": [
+    0.1171,
+    0.2268,
+    0.4001,
+    0.4994,
+    0.5764,
+    0.6827,
+    0.7659,
+    0.8412,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -199,7 +457,16 @@
    "start": 52.862,
    "end": 55.239,
    "text": "\"LGTM\"? Nah, Claude actually read it",
-   "tts": "\"LGTM\"? Nah, Claude actually read it"
+   "tts": "\"LGTM\"? Nah, Claude actually read it",
+   "wf": [
+    0.2983,
+    0.4228,
+    0.5774,
+    0.7854,
+    0.9127,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -207,7 +474,19 @@
    "start": 55.239,
    "end": 57.615,
    "text": "Left a review that made a senior regret it",
-   "tts": "Left a review that made a senior regret it"
+   "tts": "Left a review that made a senior regret it",
+   "wf": [
+    0.1179,
+    0.1945,
+    0.3343,
+    0.4437,
+    0.5651,
+    0.6417,
+    0.7865,
+    0.9249,
+    1.0
+   ],
+   "vdur": 2.125
   },
   {
    "section": "Verse 1",
@@ -215,7 +494,18 @@
    "start": 57.615,
    "end": 59.991,
    "text": "Benchmarks inflated like a bounce house at recess",
-   "tts": "Benchmarks inflated like a bounce house at recess"
+   "tts": "Benchmarks inflated like a bounce house at recess",
+   "wf": [
+    0.2025,
+    0.3834,
+    0.4836,
+    0.5551,
+    0.6784,
+    0.784,
+    0.8606,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 1",
@@ -223,7 +513,19 @@
    "start": 59.991,
    "end": 62.367,
    "text": "Real ones ship on Tuesday, you demo on weekends",
-   "tts": "Real ones ship on Tuesday, you demo on weekends"
+   "tts": "Real ones ship on Tuesday, you demo on weekends",
+   "wf": [
+    0.099,
+    0.2319,
+    0.3366,
+    0.4266,
+    0.5639,
+    0.6479,
+    0.7408,
+    0.8308,
+    1.0
+   ],
+   "vdur": 2.286
   },
   {
    "section": "Verse 1",
@@ -231,7 +533,19 @@
    "start": 62.367,
    "end": 64.743,
    "text": "It's levels to prompting and y'all in the lobby",
-   "tts": "It's levels to prompting and y'all in the lobby"
+   "tts": "It's levels to prompting and y'all in the lobby",
+   "wf": [
+    0.0999,
+    0.2433,
+    0.3191,
+    0.5126,
+    0.6125,
+    0.725,
+    0.8066,
+    0.8791,
+    1.0
+   ],
+   "vdur": 2.29
   },
   {
    "section": "Verse 1",
@@ -239,7 +553,17 @@
    "start": 64.743,
    "end": 67.12,
    "text": "Claude in the penthouse, refactoring's a hobby",
-   "tts": "Claude in the penthouse, refactoring's a hobby"
+   "tts": "Claude in the penthouse, refactoring's a hobby",
+   "wf": [
+    0.1413,
+    0.2314,
+    0.3115,
+    0.4969,
+    0.7798,
+    0.8612,
+    1.0
+   ],
+   "vdur": 2.283
   },
   {
    "section": "Hook",
@@ -247,7 +571,18 @@
    "start": 69.496,
    "end": 71.872,
    "text": "They not like Claude (they not like Claude)",
-   "tts": "They not like Claude"
+   "tts": "They not like Claude",
+   "wf": [
+    0.1155,
+    0.2364,
+    0.3544,
+    0.5,
+    0.6155,
+    0.7364,
+    0.8544,
+    1.0
+   ],
+   "vdur": 1.196
   },
   {
    "section": "Hook",
@@ -255,7 +590,19 @@
    "start": 71.872,
    "end": 74.248,
    "text": "Wrapper with a system prompt, they not like Claude",
-   "tts": "Wrapper with a system prompt, they not like Claude"
+   "tts": "Wrapper with a system prompt, they not like Claude",
+   "wf": [
+    0.1161,
+    0.2199,
+    0.2944,
+    0.4302,
+    0.5846,
+    0.6805,
+    0.781,
+    0.879,
+    1.0
+   ],
+   "vdur": 2.287
   },
   {
    "section": "Hook",
@@ -263,7 +610,19 @@
    "start": 74.248,
    "end": 76.625,
    "text": "Merge, merge, merge, merge, merge \u2014 let the subagents swarm",
-   "tts": "Merge, merge, merge, merge, merge ,  let the subagents swarm"
+   "tts": "Merge, merge, merge, merge, merge ,  let the subagents swarm",
+   "wf": [
+    0.1099,
+    0.2198,
+    0.3298,
+    0.4397,
+    0.5496,
+    0.631,
+    0.6922,
+    0.8735,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Hook",
@@ -271,7 +630,18 @@
    "start": 76.625,
    "end": 79.001,
    "text": "They not like Claude (nah), they not like Claude",
-   "tts": "They not like Claude , they not like Claude"
+   "tts": "They not like Claude , they not like Claude",
+   "wf": [
+    0.1155,
+    0.2364,
+    0.3544,
+    0.5,
+    0.6155,
+    0.7364,
+    0.8544,
+    1.0
+   ],
+   "vdur": 2.288
   },
   {
    "section": "Hook",
@@ -279,7 +649,18 @@
    "start": 79.001,
    "end": 81.377,
    "text": "PM said it's AGI \u2014 it's probably a minor (release)",
-   "tts": "PM said it's AGI ,  it's probably a minor"
+   "tts": "PM said it's AGI ,  it's probably a minor",
+   "wf": [
+    0.14,
+    0.2582,
+    0.3714,
+    0.4858,
+    0.5989,
+    0.7807,
+    0.8687,
+    1.0
+   ],
+   "vdur": 2.29
   },
   {
    "section": "Hook",
@@ -287,7 +668,20 @@
    "start": 81.377,
    "end": 83.753,
    "text": "Whole repo in the context, boy, they not like Claude",
-   "tts": "Whole repo in the context, boy, they not like Claude"
+   "tts": "Whole repo in the context, boy, they not like Claude",
+   "wf": [
+    0.0973,
+    0.2043,
+    0.2774,
+    0.3425,
+    0.5094,
+    0.6014,
+    0.6934,
+    0.7898,
+    0.8839,
+    1.0
+   ],
+   "vdur": 2.291
   },
   {
    "section": "Hook",
@@ -295,7 +689,20 @@
    "start": 83.753,
    "end": 86.13,
    "text": "They not like Claude (say it again, say it again)",
-   "tts": "They not like Claude"
+   "tts": "They not like Claude",
+   "wf": [
+    0.0974,
+    0.1994,
+    0.2989,
+    0.4217,
+    0.5183,
+    0.5859,
+    0.7109,
+    0.8075,
+    0.875,
+    1.0
+   ],
+   "vdur": 1.196
   },
   {
    "section": "Hook",
@@ -303,7 +710,17 @@
    "start": 86.13,
    "end": 88.506,
    "text": "Everybody claiming \"agent\" \u2014 they not like Claude",
-   "tts": "Everybody claiming \"agent\" ,  they not like Claude"
+   "tts": "Everybody claiming \"agent\" ,  they not like Claude",
+   "wf": [
+    0.2195,
+    0.3739,
+    0.5175,
+    0.6289,
+    0.7456,
+    0.8595,
+    1.0
+   ],
+   "vdur": 2.298
   },
   {
    "section": "Bridge",
@@ -311,7 +728,17 @@
    "start": 90.882,
    "end": 93.258,
    "text": "Compact it (compact it), context getting heavy",
-   "tts": "Compact it , context getting heavy"
+   "tts": "Compact it , context getting heavy",
+   "wf": [
+    0.1894,
+    0.2668,
+    0.4562,
+    0.5336,
+    0.739,
+    0.8684,
+    1.0
+   ],
+   "vdur": 2.222
   },
   {
    "section": "Bridge",
@@ -319,7 +746,15 @@
    "start": 93.258,
    "end": 95.635,
    "text": "Checkpoint (checkpoint), keep the commits ready",
-   "tts": "Checkpoint , keep the commits ready"
+   "tts": "Checkpoint , keep the commits ready",
+   "wf": [
+    0.2933,
+    0.4556,
+    0.578,
+    0.8175,
+    1.0
+   ],
+   "vdur": 1.965
   },
   {
    "section": "Bridge",
@@ -327,7 +762,15 @@
    "start": 95.635,
    "end": 98.011,
    "text": "MCP down (again?), server acting petty",
-   "tts": "MCP down , server acting petty"
+   "tts": "MCP down , server acting petty",
+   "wf": [
+    0.2986,
+    0.4464,
+    0.6415,
+    0.8525,
+    1.0
+   ],
+   "vdur": 2.281
   },
   {
    "section": "Bridge",
@@ -335,7 +778,17 @@
    "start": 98.011,
    "end": 100.387,
    "text": "Another .md (write it), docs looking deadly",
-   "tts": "Another .md , docs looking deadly"
+   "tts": "Another .md , docs looking deadly",
+   "wf": [
+    0.1675,
+    0.3218,
+    0.4538,
+    0.543,
+    0.6933,
+    0.8607,
+    1.0
+   ],
+   "vdur": 2.293
   },
   {
    "section": "Bridge",
@@ -343,7 +796,17 @@
    "start": 100.387,
    "end": 102.763,
    "text": "Compact it (compact it), window getting slim",
-   "tts": "Compact it , window getting slim"
+   "tts": "Compact it , window getting slim",
+   "wf": [
+    0.2,
+    0.2817,
+    0.4817,
+    0.5634,
+    0.72,
+    0.8567,
+    1.0
+   ],
+   "vdur": 1.978
   },
   {
    "section": "Bridge",
@@ -351,7 +814,18 @@
    "start": 102.763,
    "end": 105.14,
    "text": "Token meter spinning like a washing machine rim",
-   "tts": "Token meter spinning like a washing machine rim"
+   "tts": "Token meter spinning like a washing machine rim",
+   "wf": [
+    0.1372,
+    0.2547,
+    0.3859,
+    0.4939,
+    0.5715,
+    0.7316,
+    0.8855,
+    1.0
+   ],
+   "vdur": 2.282
   },
   {
    "section": "Bridge",
@@ -359,7 +833,20 @@
    "start": 105.14,
    "end": 107.516,
    "text": "If the lint is red then the vibes are too",
-   "tts": "If the lint is red then the vibes are too"
+   "tts": "If the lint is red then the vibes are too",
+   "wf": [
+    0.0828,
+    0.1597,
+    0.2751,
+    0.3689,
+    0.4805,
+    0.5979,
+    0.6748,
+    0.8256,
+    0.9192,
+    1.0
+   ],
+   "vdur": 2.106
   },
   {
    "section": "Bridge",
@@ -367,7 +854,18 @@
    "start": 107.516,
    "end": 109.892,
    "text": "Claude said \"on it\" \u2014 and it's actually true",
-   "tts": "Claude said \"on it\" ,  and it's actually true"
+   "tts": "Claude said \"on it\" ,  and it's actually true",
+   "wf": [
+    0.1472,
+    0.2694,
+    0.3785,
+    0.4593,
+    0.5746,
+    0.6909,
+    0.8926,
+    1.0
+   ],
+   "vdur": 2.287
   },
   {
    "section": "Verse 2",
@@ -375,7 +873,18 @@
    "start": 114.645,
    "end": 117.021,
    "text": "She asked if I'm really a 10x developer",
-   "tts": "She asked if I'm really a 10x developer"
+   "tts": "She asked if I'm really a 10x developer",
+   "wf": [
+    0.1,
+    0.2352,
+    0.3205,
+    0.4306,
+    0.5486,
+    0.6291,
+    0.8112,
+    1.0
+   ],
+   "vdur": 2.269
   },
   {
    "section": "Verse 2",
@@ -383,7 +892,19 @@
    "start": 117.021,
    "end": 119.397,
    "text": "I said \"define I\" \u2014 me and Claude together, blur",
-   "tts": "I said \"define I\" ,  me and Claude together, blur"
+   "tts": "I said \"define I\" ,  me and Claude together, blur",
+   "wf": [
+    0.0809,
+    0.1917,
+    0.3409,
+    0.4218,
+    0.513,
+    0.6172,
+    0.7507,
+    0.9042,
+    1.0
+   ],
+   "vdur": 2.284
   },
   {
    "section": "Verse 2",
@@ -391,7 +912,18 @@
    "start": 119.397,
    "end": 121.773,
    "text": "My git blame looking like a group project",
-   "tts": "My git blame looking like a group project"
+   "tts": "My git blame looking like a group project",
+   "wf": [
+    0.1181,
+    0.2067,
+    0.3385,
+    0.4898,
+    0.6088,
+    0.6938,
+    0.8082,
+    1.0
+   ],
+   "vdur": 2.211
   },
   {
    "section": "Verse 2",
@@ -399,7 +931,19 @@
    "start": 121.773,
    "end": 124.149,
    "text": "Half of these functions I have never read, honest",
-   "tts": "Half of these functions I have never read, honest"
+   "tts": "Half of these functions I have never read, honest",
+   "wf": [
+    0.1036,
+    0.1824,
+    0.2941,
+    0.4903,
+    0.5632,
+    0.6719,
+    0.7898,
+    0.8888,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 2",
@@ -407,7 +951,19 @@
    "start": 124.149,
    "end": 126.526,
    "text": "System prompt leaked and it's cleaner than my apartment",
-   "tts": "System prompt leaked and it's cleaner than my apartment"
+   "tts": "System prompt leaked and it's cleaner than my apartment",
+   "wf": [
+    0.1275,
+    0.2708,
+    0.3737,
+    0.4617,
+    0.5496,
+    0.6468,
+    0.7372,
+    0.8273,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 2",
@@ -415,7 +971,19 @@
    "start": 126.526,
    "end": 128.902,
    "text": "My CLAUDE.md's longer than my dissertation, don't start it",
-   "tts": "My CLAUDE.md's longer than my dissertation, don't start it"
+   "tts": "My CLAUDE.md's longer than my dissertation, don't start it",
+   "wf": [
+    0.0784,
+    0.3398,
+    0.4496,
+    0.5283,
+    0.6067,
+    0.7673,
+    0.8489,
+    0.9446,
+    1.0
+   ],
+   "vdur": 2.296
   },
   {
    "section": "Verse 2",
@@ -423,7 +991,19 @@
    "start": 128.902,
    "end": 131.278,
    "text": "o3 was my ex, we don't talk, no drama",
-   "tts": "o3 was my ex, we don't talk, no drama"
+   "tts": "o3 was my ex, we don't talk, no drama",
+   "wf": [
+    0.1432,
+    0.2653,
+    0.374,
+    0.4849,
+    0.5806,
+    0.6939,
+    0.7933,
+    0.8952,
+    1.0
+   ],
+   "vdur": 2.291
   },
   {
    "section": "Verse 2",
@@ -431,7 +1011,20 @@
    "start": 131.278,
    "end": 133.654,
    "text": "Left it on read like the end of a saga",
-   "tts": "Left it on read like the end of a saga"
+   "tts": "Left it on read like the end of a saga",
+   "wf": [
+    0.1219,
+    0.1996,
+    0.2991,
+    0.4123,
+    0.5232,
+    0.6011,
+    0.7047,
+    0.7948,
+    0.874,
+    1.0
+   ],
+   "vdur": 1.921
   },
   {
    "section": "Verse 2",
@@ -439,7 +1032,18 @@
    "start": 133.654,
    "end": 136.031,
    "text": "Gemini got context for days but forgot ya",
-   "tts": "Gemini got context for days but forgot ya"
+   "tts": "Gemini got context for days but forgot ya",
+   "wf": [
+    0.1373,
+    0.2317,
+    0.4324,
+    0.5429,
+    0.6598,
+    0.749,
+    0.9101,
+    1.0
+   ],
+   "vdur": 2.286
   },
   {
    "section": "Verse 2",
@@ -447,7 +1051,18 @@
    "start": 136.031,
    "end": 138.407,
    "text": "Asked it one question and it answered another",
-   "tts": "Asked it one question and it answered another"
+   "tts": "Asked it one question and it answered another",
+   "wf": [
+    0.1357,
+    0.215,
+    0.3277,
+    0.5051,
+    0.6146,
+    0.6939,
+    0.8559,
+    1.0
+   ],
+   "vdur": 2.295
   },
   {
    "section": "Verse 2",
@@ -455,7 +1070,19 @@
    "start": 138.407,
    "end": 140.783,
    "text": "Devin took my ticket, made an epic, went ghost",
-   "tts": "Devin took my ticket, made an epic, went ghost"
+   "tts": "Devin took my ticket, made an epic, went ghost",
+   "wf": [
+    0.1195,
+    0.2016,
+    0.3081,
+    0.4358,
+    0.5572,
+    0.651,
+    0.7657,
+    0.8895,
+    1.0
+   ],
+   "vdur": 2.286
   },
   {
    "section": "Verse 2",
@@ -463,7 +1090,19 @@
    "start": 140.783,
    "end": 143.159,
    "text": "Claude closed the ticket and roasted it in prose",
-   "tts": "Claude closed the ticket and roasted it in prose"
+   "tts": "Claude closed the ticket and roasted it in prose",
+   "wf": [
+    0.1267,
+    0.2787,
+    0.3505,
+    0.4721,
+    0.5711,
+    0.7214,
+    0.793,
+    0.8739,
+    1.0
+   ],
+   "vdur": 2.29
   },
   {
    "section": "Verse 2",
@@ -471,7 +1110,16 @@
    "start": 143.159,
    "end": 145.536,
    "text": "QuitGPT trending, the migration is massive",
-   "tts": "QuitGPT trending, the migration is massive"
+   "tts": "QuitGPT trending, the migration is massive",
+   "wf": [
+    0.2965,
+    0.4704,
+    0.5483,
+    0.7548,
+    0.8503,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 2",
@@ -479,7 +1127,16 @@
    "start": 145.536,
    "end": 147.912,
    "text": "Terminal natives, we not going backwards",
-   "tts": "Terminal natives, we not going backwards"
+   "tts": "Terminal natives, we not going backwards",
+   "wf": [
+    0.162,
+    0.3677,
+    0.4842,
+    0.6227,
+    0.7641,
+    1.0
+   ],
+   "vdur": 2.29
   },
   {
    "section": "Hook 2",
@@ -487,7 +1144,18 @@
    "start": 159.793,
    "end": 162.169,
    "text": "They not like Claude (they not like Claude)",
-   "tts": "They not like Claude"
+   "tts": "They not like Claude",
+   "wf": [
+    0.1155,
+    0.2364,
+    0.3544,
+    0.5,
+    0.6155,
+    0.7364,
+    0.8544,
+    1.0
+   ],
+   "vdur": 1.196
   },
   {
    "section": "Hook 2",
@@ -495,7 +1163,19 @@
    "start": 162.169,
    "end": 164.546,
    "text": "\"Agentic\" on the landing page only, not like Claude",
-   "tts": "\"Agentic\" on the landing page only, not like Claude"
+   "tts": "\"Agentic\" on the landing page only, not like Claude",
+   "wf": [
+    0.1632,
+    0.2517,
+    0.319,
+    0.4652,
+    0.5737,
+    0.6829,
+    0.7826,
+    0.88,
+    1.0
+   ],
+   "vdur": 2.299
   },
   {
    "section": "Hook 2",
@@ -503,7 +1183,17 @@
    "start": 164.546,
    "end": 166.922,
    "text": "Certified terminal boogeyman, they not like Claude",
-   "tts": "Certified terminal boogeyman, they not like Claude"
+   "tts": "Certified terminal boogeyman, they not like Claude",
+   "wf": [
+    0.2089,
+    0.3519,
+    0.5085,
+    0.622,
+    0.7409,
+    0.8569,
+    1.0
+   ],
+   "vdur": 2.293
   },
   {
    "section": "Hook 2",
@@ -511,7 +1201,18 @@
    "start": 166.922,
    "end": 169.298,
    "text": "They not like Claude (nah), they not like Claude",
-   "tts": "They not like Claude , they not like Claude"
+   "tts": "They not like Claude , they not like Claude",
+   "wf": [
+    0.1155,
+    0.2364,
+    0.3544,
+    0.5,
+    0.6155,
+    0.7364,
+    0.8544,
+    1.0
+   ],
+   "vdur": 2.288
   },
   {
    "section": "Hook 2",
@@ -519,7 +1220,20 @@
    "start": 169.298,
    "end": 171.674,
    "text": "Burning through your credits on retries, they not like Claude",
-   "tts": "Burning through your credits on retries, they not like Claude"
+   "tts": "Burning through your credits on retries, they not like Claude",
+   "wf": [
+    0.1023,
+    0.1826,
+    0.2777,
+    0.4152,
+    0.4947,
+    0.6294,
+    0.715,
+    0.8046,
+    0.8921,
+    1.0
+   ],
+   "vdur": 2.294
   },
   {
    "section": "Hook 2",
@@ -527,7 +1241,20 @@
    "start": 171.674,
    "end": 174.051,
    "text": "Read the whole repo, no stumble, they not like Claude",
-   "tts": "Read the whole repo, no stumble, they not like Claude"
+   "tts": "Read the whole repo, no stumble, they not like Claude",
+   "wf": [
+    0.0973,
+    0.1626,
+    0.2602,
+    0.3675,
+    0.4605,
+    0.6001,
+    0.6924,
+    0.7892,
+    0.8836,
+    1.0
+   ],
+   "vdur": 2.293
   },
   {
    "section": "Hook 2",
@@ -535,7 +1262,17 @@
    "start": 174.051,
    "end": 176.427,
    "text": "They not like Claude (one more time)",
-   "tts": "They not like Claude"
+   "tts": "They not like Claude",
+   "wf": [
+    0.1324,
+    0.2712,
+    0.4066,
+    0.5736,
+    0.7141,
+    0.8538,
+    1.0
+   ],
+   "vdur": 1.196
   },
   {
    "section": "Hook 2",
@@ -543,7 +1280,14 @@
    "start": 176.427,
    "end": 178.803,
    "text": "They not like Claude",
-   "tts": "They not like Claude"
+   "tts": "They not like Claude",
+   "wf": [
+    0.2309,
+    0.4728,
+    0.7088,
+    1.0
+   ],
+   "vdur": 1.196
   },
   {
    "section": "Verse 3",
@@ -551,7 +1295,17 @@
    "start": 178.803,
    "end": 181.179,
    "text": "Aight, story time: Friday, five o'clock deploy",
-   "tts": "Aight, story time: Friday, five o'clock deploy"
+   "tts": "Aight, story time: Friday, five o'clock deploy",
+   "wf": [
+    0.0982,
+    0.2393,
+    0.368,
+    0.527,
+    0.6683,
+    0.828,
+    1.0
+   ],
+   "vdur": 2.282
   },
   {
    "section": "Verse 3",
@@ -559,7 +1313,17 @@
    "start": 181.179,
    "end": 183.555,
    "text": "Some genius merged a \"tiny change\" \u2014 destroyed",
-   "tts": "Some genius merged a \"tiny change\" ,  destroyed"
+   "tts": "Some genius merged a \"tiny change\" ,  destroyed",
+   "wf": [
+    0.1259,
+    0.2711,
+    0.4332,
+    0.518,
+    0.636,
+    0.794,
+    1.0
+   ],
+   "vdur": 2.29
   },
   {
    "section": "Verse 3",
@@ -567,7 +1331,18 @@
    "start": 183.555,
    "end": 185.932,
    "text": "Prod on fire, pager screaming like a banshee",
-   "tts": "Prod on fire, pager screaming like a banshee"
+   "tts": "Prod on fire, pager screaming like a banshee",
+   "wf": [
+    0.1239,
+    0.2263,
+    0.3544,
+    0.4843,
+    0.6479,
+    0.7619,
+    0.8434,
+    1.0
+   ],
+   "vdur": 2.288
   },
   {
    "section": "Verse 3",
@@ -575,7 +1350,18 @@
    "start": 185.932,
    "end": 188.308,
    "text": "VP in the channel typing \"any updates? anybody?\"",
-   "tts": "VP in the channel typing \"any updates? anybody?\""
+   "tts": "VP in the channel typing \"any updates? anybody?\"",
+   "wf": [
+    0.1447,
+    0.231,
+    0.3075,
+    0.4192,
+    0.5592,
+    0.648,
+    0.8321,
+    1.0
+   ],
+   "vdur": 2.282
   },
   {
    "section": "Verse 3",
@@ -583,7 +1369,20 @@
    "start": 188.308,
    "end": 190.684,
    "text": "First we tried the chatbot with the fancy demo reel",
-   "tts": "First we tried the chatbot with the fancy demo reel"
+   "tts": "First we tried the chatbot with the fancy demo reel",
+   "wf": [
+    0.1083,
+    0.1909,
+    0.3057,
+    0.372,
+    0.5175,
+    0.6155,
+    0.6819,
+    0.8182,
+    0.9057,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 3",
@@ -591,7 +1390,19 @@
    "start": 190.684,
    "end": 193.06,
    "text": "It apologized profusely, then it made the outage real",
-   "tts": "It apologized profusely, then it made the outage real"
+   "tts": "It apologized profusely, then it made the outage real",
+   "wf": [
+    0.0674,
+    0.2689,
+    0.4328,
+    0.5375,
+    0.6049,
+    0.7137,
+    0.7812,
+    0.905,
+    1.0
+   ],
+   "vdur": 2.282
   },
   {
    "section": "Verse 3",
@@ -599,7 +1410,18 @@
    "start": 193.06,
    "end": 195.437,
    "text": "Copilot suggested we should try turning it off",
-   "tts": "Copilot suggested we should try turning it off"
+   "tts": "Copilot suggested we should try turning it off",
+   "wf": [
+    0.1774,
+    0.382,
+    0.4788,
+    0.5843,
+    0.6954,
+    0.8249,
+    0.9024,
+    1.0
+   ],
+   "vdur": 2.295
   },
   {
    "section": "Verse 3",
@@ -607,7 +1429,17 @@
    "start": 195.437,
    "end": 197.813,
    "text": "Gemini summarized the incident and logged off",
-   "tts": "Gemini summarized the incident and logged off"
+   "tts": "Gemini summarized the incident and logged off",
+   "wf": [
+    0.1461,
+    0.3534,
+    0.436,
+    0.6412,
+    0.7551,
+    0.8964,
+    1.0
+   ],
+   "vdur": 2.301
   },
   {
    "section": "Verse 3",
@@ -615,7 +1447,19 @@
    "start": 197.813,
    "end": 200.189,
    "text": "Some days you gotta pop that terminal open \u2014 showtime",
-   "tts": "Some days you gotta pop that terminal open ,  showtime"
+   "tts": "Some days you gotta pop that terminal open ,  showtime",
+   "wf": [
+    0.109,
+    0.2177,
+    0.3039,
+    0.4012,
+    0.502,
+    0.6069,
+    0.7319,
+    0.8446,
+    1.0
+   ],
+   "vdur": 2.276
   },
   {
    "section": "Verse 3",
@@ -623,7 +1467,19 @@
    "start": 200.189,
    "end": 202.565,
    "text": "Claude read the stack trace like a Sunday journal",
-   "tts": "Claude read the stack trace like a Sunday journal"
+   "tts": "Claude read the stack trace like a Sunday journal",
+   "wf": [
+    0.1349,
+    0.2459,
+    0.3224,
+    0.4385,
+    0.5613,
+    0.6701,
+    0.7478,
+    0.8925,
+    1.0
+   ],
+   "vdur": 2.294
   },
   {
    "section": "Verse 3",
@@ -631,7 +1487,19 @@
    "start": 202.565,
    "end": 204.942,
    "text": "Grepping through the services, mapping out the blast zone",
-   "tts": "Grepping through the services, mapping out the blast zone"
+   "tts": "Grepping through the services, mapping out the blast zone",
+   "wf": [
+    0.1277,
+    0.2187,
+    0.2905,
+    0.4751,
+    0.6129,
+    0.6972,
+    0.769,
+    0.8818,
+    1.0
+   ],
+   "vdur": 2.284
   },
   {
    "section": "Verse 3",
@@ -639,7 +1507,18 @@
    "start": 204.942,
    "end": 207.318,
    "text": "Found the cursed migration everybody walked past, whoa",
-   "tts": "Found the cursed migration everybody walked past, whoa"
+   "tts": "Found the cursed migration everybody walked past, whoa",
+   "wf": [
+    0.1234,
+    0.1939,
+    0.2963,
+    0.4833,
+    0.6764,
+    0.8016,
+    0.9,
+    1.0
+   ],
+   "vdur": 2.289
   },
   {
    "section": "Verse 3",
@@ -647,7 +1526,20 @@
    "start": 207.318,
    "end": 209.694,
    "text": "Rolled it back clean with a plan that it drafted",
-   "tts": "Rolled it back clean with a plan that it drafted"
+   "tts": "Rolled it back clean with a plan that it drafted",
+   "wf": [
+    0.1257,
+    0.1954,
+    0.2835,
+    0.3971,
+    0.5003,
+    0.5713,
+    0.6826,
+    0.784,
+    0.8536,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 3",
@@ -655,7 +1547,20 @@
    "start": 209.694,
    "end": 212.07,
    "text": "Wrote the runbook after so the fix would be lasting",
-   "tts": "Wrote the runbook after so the fix would be lasting"
+   "tts": "Wrote the runbook after so the fix would be lasting",
+   "wf": [
+    0.0935,
+    0.1614,
+    0.2959,
+    0.4163,
+    0.5105,
+    0.5784,
+    0.6947,
+    0.784,
+    0.8582,
+    1.0
+   ],
+   "vdur": 2.282
   },
   {
    "section": "Verse 3",
@@ -663,7 +1568,17 @@
    "start": 212.07,
    "end": 214.447,
    "text": "Postmortem so polite that nobody got blasted",
-   "tts": "Postmortem so polite that nobody got blasted"
+   "tts": "Postmortem so polite that nobody got blasted",
+   "wf": [
+    0.2207,
+    0.3288,
+    0.462,
+    0.5751,
+    0.7425,
+    0.8371,
+    1.0
+   ],
+   "vdur": 2.298
   },
   {
    "section": "Verse 3",
@@ -671,7 +1586,20 @@
    "start": 214.447,
    "end": 216.823,
    "text": "Blameless like a saint, but git blame still has it",
-   "tts": "Blameless like a saint, but git blame still has it"
+   "tts": "Blameless like a saint, but git blame still has it",
+   "wf": [
+    0.1506,
+    0.2502,
+    0.3214,
+    0.4429,
+    0.5233,
+    0.5975,
+    0.7079,
+    0.8151,
+    0.9302,
+    1.0
+   ],
+   "vdur": 2.294
   },
   {
    "section": "Verse 3",
@@ -679,7 +1607,19 @@
    "start": 216.823,
    "end": 219.199,
    "text": "Six minutes flat, that's the mean time to heaven",
-   "tts": "Six minutes flat, that's the mean time to heaven"
+   "tts": "Six minutes flat, that's the mean time to heaven",
+   "wf": [
+    0.1223,
+    0.2642,
+    0.3794,
+    0.5103,
+    0.5821,
+    0.6874,
+    0.7986,
+    0.8738,
+    1.0
+   ],
+   "vdur": 2.291
   },
   {
    "section": "Verse 3",
@@ -687,7 +1627,15 @@
    "start": 219.199,
    "end": 221.575,
    "text": "Status page green by five-eleven",
-   "tts": "Status page green by five-eleven"
+   "tts": "Status page green by five-eleven",
+   "wf": [
+    0.2154,
+    0.3871,
+    0.5378,
+    0.6752,
+    1.0
+   ],
+   "vdur": 1.854
   },
   {
    "section": "Verse 3",
@@ -695,7 +1643,20 @@
    "start": 221.575,
    "end": 223.952,
    "text": "VP said \"who fixed it?\" I said \"the new hire\"",
-   "tts": "VP said \"who fixed it?\" I said \"the new hire\""
+   "tts": "VP said \"who fixed it?\" I said \"the new hire\"",
+   "wf": [
+    0.1385,
+    0.246,
+    0.3337,
+    0.4629,
+    0.536,
+    0.6144,
+    0.7218,
+    0.7951,
+    0.887,
+    1.0
+   ],
+   "vdur": 2.296
   },
   {
    "section": "Verse 3",
@@ -703,7 +1664,18 @@
    "start": 223.952,
    "end": 226.328,
    "text": "It don't drink coffee and it don't retire",
-   "tts": "It don't drink coffee and it don't retire"
+   "tts": "It don't drink coffee and it don't retire",
+   "wf": [
+    0.0866,
+    0.2145,
+    0.3479,
+    0.491,
+    0.6108,
+    0.6974,
+    0.8253,
+    1.0
+   ],
+   "vdur": 2.284
   },
   {
    "section": "Verse 3",
@@ -711,7 +1683,17 @@
    "start": 226.328,
    "end": 228.704,
    "text": "Y'all still arguing about tabs versus spaces",
-   "tts": "Y'all still arguing about tabs versus spaces"
+   "tts": "Y'all still arguing about tabs versus spaces",
+   "wf": [
+    0.1187,
+    0.2358,
+    0.4085,
+    0.5469,
+    0.6775,
+    0.834,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 3",
@@ -719,7 +1701,19 @@
    "start": 228.704,
    "end": 231.08,
    "text": "Claude done shipped to fourteen time zones and places",
-   "tts": "Claude done shipped to fourteen time zones and places"
+   "tts": "Claude done shipped to fourteen time zones and places",
+   "wf": [
+    0.1173,
+    0.1986,
+    0.3202,
+    0.3898,
+    0.5274,
+    0.6303,
+    0.7712,
+    0.8628,
+    1.0
+   ],
+   "vdur": 2.293
   },
   {
    "section": "Verse 3",
@@ -727,7 +1721,21 @@
    "start": 231.08,
    "end": 233.457,
    "text": "This the part where the haters say it's all a bubble",
-   "tts": "This the part where the haters say it's all a bubble"
+   "tts": "This the part where the haters say it's all a bubble",
+   "wf": [
+    0.0935,
+    0.162,
+    0.2585,
+    0.3553,
+    0.4238,
+    0.5599,
+    0.6505,
+    0.745,
+    0.8259,
+    0.8956,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 3",
@@ -735,7 +1743,20 @@
    "start": 233.457,
    "end": 235.833,
    "text": "Same ones DM'ing me for prompts when they in trouble",
-   "tts": "Same ones DM'ing me for prompts when they in trouble"
+   "tts": "Same ones DM'ing me for prompts when they in trouble",
+   "wf": [
+    0.0971,
+    0.2095,
+    0.3411,
+    0.4128,
+    0.4975,
+    0.6565,
+    0.7468,
+    0.8284,
+    0.8955,
+    1.0
+   ],
+   "vdur": 2.291
   },
   {
    "section": "Verse 3",
@@ -743,7 +1764,18 @@
    "start": 235.833,
    "end": 238.209,
    "text": "Keep your AGI takes, I got PRs merging",
-   "tts": "Keep your AGI takes, I got PRs merging"
+   "tts": "Keep your AGI takes, I got PRs merging",
+   "wf": [
+    0.1116,
+    0.2345,
+    0.3444,
+    0.4784,
+    0.5647,
+    0.6626,
+    0.8468,
+    1.0
+   ],
+   "vdur": 2.285
   },
   {
    "section": "Verse 3",
@@ -751,7 +1783,19 @@
    "start": 238.209,
    "end": 240.585,
    "text": "Claude's Plan was the prequel \u2014 this here's the sermon",
-   "tts": "Claude's Plan was the prequel ,  this here's the sermon"
+   "tts": "Claude's Plan was the prequel ,  this here's the sermon",
+   "wf": [
+    0.1479,
+    0.2613,
+    0.3741,
+    0.4452,
+    0.5828,
+    0.6797,
+    0.8088,
+    0.8799,
+    1.0
+   ],
+   "vdur": 2.282
   },
   {
    "section": "Outro",
@@ -759,7 +1803,16 @@
    "start": 242.961,
    "end": 245.338,
    "text": "Plan mode off (plan mode off)",
-   "tts": "Plan mode off"
+   "tts": "Plan mode off",
+   "wf": [
+    0.1791,
+    0.3574,
+    0.5,
+    0.6791,
+    0.8574,
+    1.0
+   ],
+   "vdur": 1.001
   },
   {
    "section": "Outro",
@@ -767,7 +1820,14 @@
    "start": 245.338,
    "end": 247.714,
    "text": "Context compacted, with love",
-   "tts": "Context compacted, with love"
+   "tts": "Context compacted, with love",
+   "wf": [
+    0.3082,
+    0.6393,
+    0.8194,
+    1.0
+   ],
+   "vdur": 2.283
   },
   {
    "section": "Outro",
@@ -775,7 +1835,19 @@
    "start": 247.714,
    "end": 250.09,
    "text": "No beef with the models, it's really the wrappers",
-   "tts": "No beef with the models, it's really the wrappers"
+   "tts": "No beef with the models, it's really the wrappers",
+   "wf": [
+    0.1092,
+    0.2075,
+    0.3193,
+    0.3958,
+    0.545,
+    0.6476,
+    0.769,
+    0.8455,
+    1.0
+   ],
+   "vdur": 2.292
   },
   {
    "section": "Outro",
@@ -783,7 +1855,17 @@
    "start": 250.09,
    "end": 252.466,
    "text": "Telemetry says y'all not gon' clap back",
-   "tts": "Telemetry says y'all not gon' clap back"
+   "tts": "Telemetry says y'all not gon' clap back",
+   "wf": [
+    0.2071,
+    0.35,
+    0.4838,
+    0.6138,
+    0.7381,
+    0.886,
+    1.0
+   ],
+   "vdur": 2.288
   },
   {
    "section": "Outro",
@@ -791,7 +1873,14 @@
    "start": 252.466,
    "end": 257.219,
    "text": "They not like Claude",
-   "tts": "They not like Claude"
+   "tts": "They not like Claude",
+   "wf": [
+    0.2336,
+    0.4753,
+    0.7087,
+    1.0
+   ],
+   "vdur": 1.372
   },
   {
    "section": "Outro",
@@ -799,7 +1888,12 @@
    "start": 257.219,
    "end": 259.595,
    "text": "Session saved",
-   "tts": "Session saved"
+   "tts": "Session saved",
+   "wf": [
+    0.5092,
+    1.0
+   ],
+   "vdur": 1.059
   },
   {
    "section": "Outro",
@@ -807,7 +1901,11 @@
    "start": 259.595,
    "end": 261.971,
    "text": "/exit",
-   "tts": "/exit"
+   "tts": "/exit",
+   "wf": [
+    1.0
+   ],
+   "vdur": 0.978
   },
   {
    "section": "Outro",
