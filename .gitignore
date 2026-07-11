@@ -1,0 +1,5 @@
+# user-supplied audio and rendered output stay out of the public repo
+audio/
+build/
+__pycache__/
+node_modules/

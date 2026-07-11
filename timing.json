@@ -1,0 +1,821 @@
+{
+ "bpm": 100.9,
+ "events": [
+  {
+   "section": "Intro",
+   "style": "intro",
+   "start": 9.918,
+   "end": 14.676,
+   "text": "Yeah, boot it up (boot it up)",
+   "tts": "Yeah, boot it up"
+  },
+  {
+   "section": "Intro",
+   "style": "intro",
+   "start": 14.676,
+   "end": 19.433,
+   "text": "Terminal glowing, it's four in the morning",
+   "tts": "Terminal glowing, it's four in the morning"
+  },
+  {
+   "section": "Intro",
+   "style": "intro",
+   "start": 19.433,
+   "end": 23.001,
+   "text": "Plan mode armed, no warnings, we pouring",
+   "tts": "Plan mode armed, no warnings, we pouring"
+  },
+  {
+   "section": "Intro",
+   "style": "intro",
+   "start": 23.001,
+   "end": 26.569,
+   "text": "This for everybody with the context exhausted",
+   "tts": "This for everybody with the context exhausted"
+  },
+  {
+   "section": "Intro",
+   "style": "intro",
+   "start": 26.569,
+   "end": 28.947,
+   "text": "Big model energy, tell 'em who bossed it",
+   "tts": "Big model energy, tell 'em who bossed it"
+  },
+  {
+   "section": "Intro",
+   "style": "intro",
+   "start": 28.947,
+   "end": 30.731,
+   "text": "Shift-tab twice and we off it",
+   "tts": "Shift-tab twice and we off it"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 30.731,
+   "end": 33.11,
+   "text": "Plan mode approved and I'm sliding on the diff now",
+   "tts": "Plan mode approved and I'm sliding on the diff now"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 33.11,
+   "end": 35.488,
+   "text": "Ultrathink on, watch the reasoning get loud",
+   "tts": "Ultrathink on, watch the reasoning get loud"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 35.488,
+   "end": 37.867,
+   "text": "Terminal one, terminal two, and a worktree",
+   "tts": "Terminal one, terminal two, and a worktree"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 37.867,
+   "end": 40.246,
+   "text": "Subagents swarming through the repo like they heard me",
+   "tts": "Subagents swarming through the repo like they heard me"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 40.246,
+   "end": 42.624,
+   "text": "You prompting \"pls fix\" with your fingers all crossed up",
+   "tts": "You prompting \"pls fix\" with your fingers all crossed up"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 42.624,
+   "end": 45.003,
+   "text": "I'm shipping whole features while your tab-complete's stuck",
+   "tts": "I'm shipping whole features while your tab-complete's stuck"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 45.003,
+   "end": 47.381,
+   "text": "Codex on cooldown, rate limit said \"later\"",
+   "tts": "Codex on cooldown, rate limit said \"later\""
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 47.381,
+   "end": 49.76,
+   "text": "Claude clearing backlog like an excavator",
+   "tts": "Claude clearing backlog like an excavator"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 49.76,
+   "end": 52.139,
+   "text": "Cursor want credit for a rename refactor",
+   "tts": "Cursor want credit for a rename refactor"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 52.139,
+   "end": 54.517,
+   "text": "Claude did the migration and squashed it, one chapter",
+   "tts": "Claude did the migration and squashed it, one chapter"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 54.517,
+   "end": 56.896,
+   "text": "GPT wrote a test that asserts true is true",
+   "tts": "GPT wrote a test that asserts true is true"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 56.896,
+   "end": 59.274,
+   "text": "Claude caught a race condition nobody knew",
+   "tts": "Claude caught a race condition nobody knew"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 59.274,
+   "end": 61.653,
+   "text": "They hallucinate imports from a package that's fictional",
+   "tts": "They hallucinate imports from a package that's fictional"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 61.653,
+   "end": 64.032,
+   "text": "Claude cite the docs page, line number, that's literal",
+   "tts": "Claude cite the docs page, line number, that's literal"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 64.032,
+   "end": 66.41,
+   "text": "Copilot whispering one line at a time",
+   "tts": "Copilot whispering one line at a time"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 66.41,
+   "end": 68.789,
+   "text": "Claude drop a whole PR, tests and lint all fine",
+   "tts": "Claude drop a whole PR, tests and lint all fine"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 68.789,
+   "end": 71.167,
+   "text": "Your agent needs babysitting, snacks and a helmet",
+   "tts": "Your agent needs babysitting, snacks and a helmet"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 71.167,
+   "end": 73.546,
+   "text": "Mine ran overnight and I woke up to velvet",
+   "tts": "Mine ran overnight and I woke up to velvet"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 73.546,
+   "end": 75.925,
+   "text": "\"LGTM\"? Nah, Claude actually read it",
+   "tts": "\"LGTM\"? Nah, Claude actually read it"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 75.925,
+   "end": 78.303,
+   "text": "Left a review that made a senior regret it",
+   "tts": "Left a review that made a senior regret it"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 78.303,
+   "end": 80.682,
+   "text": "Benchmarks inflated like a bounce house at recess",
+   "tts": "Benchmarks inflated like a bounce house at recess"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 80.682,
+   "end": 83.06,
+   "text": "Real ones ship on Tuesday, you demo on weekends",
+   "tts": "Real ones ship on Tuesday, you demo on weekends"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 83.06,
+   "end": 85.439,
+   "text": "It's levels to prompting and y'all in the lobby",
+   "tts": "It's levels to prompting and y'all in the lobby"
+  },
+  {
+   "section": "Verse 1",
+   "style": "verse",
+   "start": 85.439,
+   "end": 87.818,
+   "text": "Claude in the penthouse, refactoring's a hobby",
+   "tts": "Claude in the penthouse, refactoring's a hobby"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 92.575,
+   "end": 94.953,
+   "text": "They not like Claude (they not like Claude)",
+   "tts": "They not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 94.953,
+   "end": 97.332,
+   "text": "Wrapper with a system prompt, they not like Claude",
+   "tts": "Wrapper with a system prompt, they not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 97.332,
+   "end": 99.711,
+   "text": "Demo looking pretty but it's smoke, they not like Claude",
+   "tts": "Demo looking pretty but it's smoke, they not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 99.711,
+   "end": 102.089,
+   "text": "They not like Claude (nah), they not like Claude",
+   "tts": "They not like Claude , they not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 102.089,
+   "end": 104.468,
+   "text": "Whole repo in the context, boy, they not like Claude",
+   "tts": "Whole repo in the context, boy, they not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 104.468,
+   "end": 106.846,
+   "text": "Ship it straight to prod while you cope, they not like Claude",
+   "tts": "Ship it straight to prod while you cope, they not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 106.846,
+   "end": 109.225,
+   "text": "They not like Claude (they not like Claude)",
+   "tts": "They not like Claude"
+  },
+  {
+   "section": "Hook",
+   "style": "hook",
+   "start": 109.225,
+   "end": 111.604,
+   "text": "Everybody claiming \"agent\" \u2014 they not like Claude",
+   "tts": "Everybody claiming \"agent\" ,  they not like Claude"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 111.604,
+   "end": 113.982,
+   "text": "Compact it (compact it), context getting heavy",
+   "tts": "Compact it , context getting heavy"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 113.982,
+   "end": 116.361,
+   "text": "Checkpoint (checkpoint), keep the commits ready",
+   "tts": "Checkpoint , keep the commits ready"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 116.361,
+   "end": 118.739,
+   "text": "MCP down (again?), server acting petty",
+   "tts": "MCP down , server acting petty"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 118.739,
+   "end": 121.118,
+   "text": "Another .md (write it), docs looking deadly",
+   "tts": "Another .md , docs looking deadly"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 121.118,
+   "end": 123.497,
+   "text": "Compact it (compact it), window getting slim",
+   "tts": "Compact it , window getting slim"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 123.497,
+   "end": 125.875,
+   "text": "Token meter spinning like a washing machine rim",
+   "tts": "Token meter spinning like a washing machine rim"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 125.875,
+   "end": 128.254,
+   "text": "If the lint is red then the vibes are too",
+   "tts": "If the lint is red then the vibes are too"
+  },
+  {
+   "section": "Bridge",
+   "style": "bridge",
+   "start": 128.254,
+   "end": 130.632,
+   "text": "Claude said \"on it\" \u2014 and it's actually true",
+   "tts": "Claude said \"on it\" ,  and it's actually true"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 130.632,
+   "end": 133.011,
+   "text": "She asked if I'm really a 10x developer",
+   "tts": "She asked if I'm really a 10x developer"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 133.011,
+   "end": 135.39,
+   "text": "I said \"define I\" \u2014 me and Claude together, blur",
+   "tts": "I said \"define I\" ,  me and Claude together, blur"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 135.39,
+   "end": 137.768,
+   "text": "My git blame looking like a group project",
+   "tts": "My git blame looking like a group project"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 137.768,
+   "end": 140.147,
+   "text": "Half of these functions I have never read, honest",
+   "tts": "Half of these functions I have never read, honest"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 140.147,
+   "end": 142.525,
+   "text": "System prompt leaked and it's cleaner than my apartment",
+   "tts": "System prompt leaked and it's cleaner than my apartment"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 142.525,
+   "end": 144.904,
+   "text": "My CLAUDE.md's longer than my dissertation, don't start it",
+   "tts": "My CLAUDE.md's longer than my dissertation, don't start it"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 144.904,
+   "end": 147.283,
+   "text": "o3 was my ex, we don't talk, no drama",
+   "tts": "o3 was my ex, we don't talk, no drama"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 147.283,
+   "end": 149.661,
+   "text": "Left it on read like the end of a saga",
+   "tts": "Left it on read like the end of a saga"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 149.661,
+   "end": 152.04,
+   "text": "Gemini got context for days but forgot ya",
+   "tts": "Gemini got context for days but forgot ya"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 152.04,
+   "end": 154.418,
+   "text": "Asked it one question and it answered another",
+   "tts": "Asked it one question and it answered another"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 154.418,
+   "end": 156.797,
+   "text": "Devin took my ticket, made an epic, went ghost",
+   "tts": "Devin took my ticket, made an epic, went ghost"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 156.797,
+   "end": 159.176,
+   "text": "Claude closed the ticket and roasted it in prose",
+   "tts": "Claude closed the ticket and roasted it in prose"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 159.176,
+   "end": 161.554,
+   "text": "QuitGPT trending, the migration is massive",
+   "tts": "QuitGPT trending, the migration is massive"
+  },
+  {
+   "section": "Verse 2",
+   "style": "verse",
+   "start": 161.554,
+   "end": 163.933,
+   "text": "Terminal natives, we not going backwards",
+   "tts": "Terminal natives, we not going backwards"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 163.933,
+   "end": 166.311,
+   "text": "They not like Claude (they not like Claude)",
+   "tts": "They not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 166.311,
+   "end": 168.69,
+   "text": "\"Agentic\" on the landing page only, not like Claude",
+   "tts": "\"Agentic\" on the landing page only, not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 168.69,
+   "end": 171.069,
+   "text": "Burning through your credits on retries, they not like Claude",
+   "tts": "Burning through your credits on retries, they not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 171.069,
+   "end": 173.447,
+   "text": "They not like Claude (nah), they not like Claude",
+   "tts": "They not like Claude , they not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 173.447,
+   "end": 175.826,
+   "text": "Plan-mode certified and humble, they not like Claude",
+   "tts": "Plan-mode certified and humble, they not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 175.826,
+   "end": 178.204,
+   "text": "Read the whole repo, no stumble, they not like Claude",
+   "tts": "Read the whole repo, no stumble, they not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 178.204,
+   "end": 180.583,
+   "text": "They not like Claude (say it again)",
+   "tts": "They not like Claude"
+  },
+  {
+   "section": "Hook 2",
+   "style": "hook",
+   "start": 180.583,
+   "end": 182.962,
+   "text": "They not like Claude",
+   "tts": "They not like Claude"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 182.962,
+   "end": 185.34,
+   "text": "Aight, story time: Friday, five o'clock deploy",
+   "tts": "Aight, story time: Friday, five o'clock deploy"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 185.34,
+   "end": 187.719,
+   "text": "Some genius merged a \"tiny change\" \u2014 destroyed",
+   "tts": "Some genius merged a \"tiny change\" ,  destroyed"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 187.719,
+   "end": 190.097,
+   "text": "Prod on fire, pager screaming like a banshee",
+   "tts": "Prod on fire, pager screaming like a banshee"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 190.097,
+   "end": 192.476,
+   "text": "VP in the channel typing \"any updates? anybody?\"",
+   "tts": "VP in the channel typing \"any updates? anybody?\""
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 192.476,
+   "end": 194.855,
+   "text": "First we tried the chatbot with the fancy demo reel",
+   "tts": "First we tried the chatbot with the fancy demo reel"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 194.855,
+   "end": 197.233,
+   "text": "It apologized profusely, then it made the outage real",
+   "tts": "It apologized profusely, then it made the outage real"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 197.233,
+   "end": 199.612,
+   "text": "Copilot suggested we should try turning it off",
+   "tts": "Copilot suggested we should try turning it off"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 199.612,
+   "end": 201.99,
+   "text": "Gemini summarized the incident and logged off",
+   "tts": "Gemini summarized the incident and logged off"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 201.99,
+   "end": 204.369,
+   "text": "Then somebody whispered, \"yo, open the terminal\"",
+   "tts": "Then somebody whispered, \"yo, open the terminal\""
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 204.369,
+   "end": 206.748,
+   "text": "Claude read the stack trace like a Sunday journal",
+   "tts": "Claude read the stack trace like a Sunday journal"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 206.748,
+   "end": 209.126,
+   "text": "Grepping through the services, mapping out the blast zone",
+   "tts": "Grepping through the services, mapping out the blast zone"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 209.126,
+   "end": 211.505,
+   "text": "Found the cursed migration everybody walked past, whoa",
+   "tts": "Found the cursed migration everybody walked past, whoa"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 211.505,
+   "end": 213.883,
+   "text": "Rolled it back clean with a plan that it drafted",
+   "tts": "Rolled it back clean with a plan that it drafted"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 213.883,
+   "end": 216.262,
+   "text": "Wrote the runbook after so the fix would be lasting",
+   "tts": "Wrote the runbook after so the fix would be lasting"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 216.262,
+   "end": 218.641,
+   "text": "Postmortem so polite that nobody got blasted",
+   "tts": "Postmortem so polite that nobody got blasted"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 218.641,
+   "end": 221.019,
+   "text": "Blameless like a saint, but git blame still has it",
+   "tts": "Blameless like a saint, but git blame still has it"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 221.019,
+   "end": 223.398,
+   "text": "Six minutes flat, that's the mean time to heaven",
+   "tts": "Six minutes flat, that's the mean time to heaven"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 223.398,
+   "end": 225.776,
+   "text": "Status page green by five-eleven",
+   "tts": "Status page green by five-eleven"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 225.776,
+   "end": 228.155,
+   "text": "VP said \"who fixed it?\" I said \"the new hire\"",
+   "tts": "VP said \"who fixed it?\" I said \"the new hire\""
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 228.155,
+   "end": 230.534,
+   "text": "It don't drink coffee and it don't retire",
+   "tts": "It don't drink coffee and it don't retire"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 230.534,
+   "end": 232.912,
+   "text": "Y'all still arguing about tabs versus spaces",
+   "tts": "Y'all still arguing about tabs versus spaces"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 232.912,
+   "end": 235.291,
+   "text": "Claude done shipped to fourteen time zones and places",
+   "tts": "Claude done shipped to fourteen time zones and places"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 235.291,
+   "end": 237.669,
+   "text": "This the part where the haters say it's all a bubble",
+   "tts": "This the part where the haters say it's all a bubble"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 237.669,
+   "end": 240.048,
+   "text": "Same ones DM'ing me for prompts when they in trouble",
+   "tts": "Same ones DM'ing me for prompts when they in trouble"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 240.048,
+   "end": 242.427,
+   "text": "Keep your AGI takes, I got PRs merging",
+   "tts": "Keep your AGI takes, I got PRs merging"
+  },
+  {
+   "section": "Verse 3",
+   "style": "verse",
+   "start": 242.427,
+   "end": 244.805,
+   "text": "Claude's Plan was the prequel \u2014 this here's the sermon",
+   "tts": "Claude's Plan was the prequel ,  this here's the sermon"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 244.805,
+   "end": 247.184,
+   "text": "Plan mode off (plan mode off)",
+   "tts": "Plan mode off"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 247.184,
+   "end": 249.562,
+   "text": "Context compacted, with love",
+   "tts": "Context compacted, with love"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 249.562,
+   "end": 251.941,
+   "text": "No beef with the models, it's really the wrappers",
+   "tts": "No beef with the models, it's really the wrappers"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 251.941,
+   "end": 254.32,
+   "text": "Telemetry says y'all not gon' clap back",
+   "tts": "Telemetry says y'all not gon' clap back"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 254.32,
+   "end": 259.077,
+   "text": "They not like Claude",
+   "tts": "They not like Claude"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 259.077,
+   "end": 261.455,
+   "text": "Session saved",
+   "tts": "Session saved"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 261.455,
+   "end": 263.834,
+   "text": "/exit",
+   "tts": "/exit"
+  },
+  {
+   "section": "Outro",
+   "style": "outro",
+   "start": 263.834,
+   "end": 268.591,
+   "text": "(1 file changed, 14,000 insertions)",
+   "tts": ""
+  }
+ ]
+}

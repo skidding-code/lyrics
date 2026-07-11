@@ -1,0 +1,492 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1920px; height:1080px; overflow:hidden; background:#0F0F0E; }
+  #stage { position:absolute; width:1920px; height:1080px; overflow:hidden;
+           font-family:'Inter','DejaVu Sans',sans-serif; }
+  #bg { position:absolute; inset:0;
+        background:radial-gradient(1200px 800px at 50% 42%, #201d19 0%, #141312 55%, #0a0a09 100%); }
+  #tint { position:absolute; inset:0; background:#D97757; opacity:0; mix-blend-mode:overlay; }
+  #vig { position:absolute; inset:0;
+         background:radial-gradient(1400px 900px at 50% 50%, transparent 58%, rgba(0,0,0,.66) 100%); }
+  #flash { position:absolute; inset:0; background:#F0EEE6; opacity:0; }
+  #particles { position:absolute; inset:0; }
+  #burst { position:absolute; left:50%; top:41%; width:900px; height:900px;
+           transform:translate(-50%,-50%); opacity:.16; }
+  #cardWrap { position:absolute; left:50%; top:40%; width:1100px; height:580px;
+              transform:translate(-50%,-50%); }
+  #card { position:absolute; inset:0; border-radius:22px; overflow:hidden;
+          box-shadow:0 40px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(240,238,230,.08);
+          background:#1a1917; }
+  #card img { width:100%; height:100%; object-fit:cover; display:block; }
+  #cardGlow { position:absolute; inset:-40px; border-radius:40px; z-index:-1;
+              background:radial-gradient(closest-side, rgba(217,119,87,.35), transparent 70%); }
+  .term { width:100%; height:100%; background:#111110; padding:34px 40px;
+          font-family:'JetBrains Mono','DejaVu Sans Mono',monospace; font-size:25px; line-height:1.5;
+          color:#E8E6DD; white-space:pre-wrap; }
+  .term .bar { color:#8a8578; font-size:21px; margin-bottom:18px; }
+  .term .p  { color:#D97757; }
+  .term .ok { color:#7fb069; }
+  .term .dim{ color:#8a8578; }
+  .term .err{ color:#e05d44; }
+  .cursor { display:inline-block; width:14px; height:28px; background:#F0EEE6; vertical-align:-4px; }
+  #widget { position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); }
+  #toast { position:absolute; right:60px; top:70px; min-width:560px; padding:26px 32px; border-radius:16px;
+           background:#2a1512; border:1px solid #e05d44; color:#F0EEE6;
+           font-family:'JetBrains Mono',monospace; font-size:26px; opacity:0; }
+  #toast .t { color:#e05d44; font-weight:700; }
+  #lyric { position:absolute; left:50%; bottom:88px; width:1700px; transform:translateX(-50%);
+           text-align:center; font-weight:800; font-size:66px; line-height:1.14;
+           letter-spacing:-.5px; color:#F0EEE6; text-transform:uppercase; }
+  #lyric .w { display:inline-block; margin:0 .22ch; white-space:nowrap; }
+  #lyric .done { color:#D97757; }
+  #lyric .cur  { color:#FFFFFF; }
+  #lyric .todo { color:rgba(240,238,230,.32); }
+  #lyric .ad   { font-weight:600; font-size:.55em; color:rgba(217,119,87,.85); text-transform:none; }
+  #nextline { position:absolute; left:50%; bottom:40px; width:1500px; transform:translateX(-50%);
+              text-align:center; font-weight:600; font-size:30px; color:rgba(240,238,230,.28);
+              text-transform:uppercase; letter-spacing:.5px; }
+  #slam { position:absolute; inset:0; display:none; align-items:center; justify-content:center;
+          flex-direction:column; text-align:center; }
+  #slamPre { font-weight:700; font-size:44px; color:rgba(240,238,230,.75); text-transform:uppercase;
+             margin-bottom:30px; letter-spacing:2px; }
+  #slamBig { font-weight:900; font-size:170px; line-height:.95; letter-spacing:-4px;
+             text-transform:uppercase; font-style:italic; }
+  #secLabel { position:absolute; left:64px; top:58px; font-family:'JetBrains Mono',monospace;
+              font-size:24px; color:rgba(240,238,230,.5); letter-spacing:1px; }
+  #secLabel b { color:#D97757; }
+  #badge { position:absolute; right:64px; bottom:44px; font-family:'JetBrains Mono',monospace;
+           font-size:22px; color:rgba(240,238,230,.4); }
+  #progress { position:absolute; left:0; bottom:0; height:6px; background:#D97757; width:0; }
+  #cover { position:absolute; inset:0; display:none; background:#0F0F0E; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <div id="tint"></div>
+  <canvas id="particles" width="1920" height="1080"></canvas>
+  <div id="burst"></div>
+  <div id="cardWrap"><div id="cardGlow"></div><div id="card"></div></div>
+  <div id="widget"></div>
+  <div id="toast"></div>
+  <div id="vig"></div>
+  <div id="slam"><div id="slamPre"></div><div id="slamBig"></div></div>
+  <div id="secLabel"></div>
+  <div id="badge">claude code · not like claude</div>
+  <div id="lyric"></div>
+  <div id="nextline"></div>
+  <div id="flash"></div>
+  <div id="progress"></div>
+</div>
+<script>
+const T = __TIMING__;
+const A = __ANALYSIS__;
+const IMG = __IMAGES__;
+const HELP = __HELP__;
+
+const EV = T.events;
+const BEAT = A.sec_per_beat, OFF = A.beat_offset_sec, BAR = BEAT*4, DUR = A.duration_sec;
+const ORANGE = '#D97757', CREAM = '#F0EEE6';
+
+const $ = id => document.getElementById(id);
+const clamp = (x,a,b)=>Math.max(a,Math.min(b,x));
+const lerp = (a,b,x)=>a+(b-a)*x;
+// deterministic pseudo-random
+function rnd(i){ let x = Math.sin(i*127.1+311.7)*43758.5453; return x-Math.floor(x); }
+function easeOut(x){ return 1-Math.pow(1-x,3); }
+function spring(x){ // overshoot pop
+  return x>=1?1:1 - Math.exp(-6*x)*Math.cos(9*x)*(1-x);
+}
+function beatPhase(t){ let p=((t-OFF)/BEAT)%1; return p<0?p+1:p; }
+function beatIdx(t){ return Math.floor((t-OFF)/BEAT); }
+function pulse(t){ return Math.exp(-5*beatPhase(t)); }
+
+// ---- starburst (Claude-style asterisk, drawn procedurally) ----
+function burstSVG(color, n=11){
+  let paths='';
+  for(let i=0;i<n;i++){
+    const a = i*(360/n) + (rnd(i)*10-5);
+    const len = 46 + rnd(i+50)*8;
+    paths += `<g transform="rotate(${a} 50 50)"><rect x="47.4" y="${50-len/2-1}" width="5.2" height="${len}" rx="2.6" fill="${color}"/></g>`;
+  }
+  return `<svg viewBox="0 0 100 100" width="100%" height="100%">${paths}</svg>`;
+}
+$('burst').innerHTML = burstSVG(ORANGE);
+
+// ---- sections ----
+const SECTIONS = {};
+EV.forEach((e,i)=>{ e.i=i; (SECTIONS[e.section]=SECTIONS[e.section]||[]).push(e); });
+function evAt(t){ let cur=null; for(const e of EV){ if(t>=e.start) cur=e; else break; } return cur; }
+function nextEv(e){ return e && e.i+1<EV.length ? EV[e.i+1] : null; }
+function secBounds(name){ const s=SECTIONS[name]; return [s[0].start, s[s.length-1].end]; }
+function inSec(t,name){ const [a,b]=secBounds(name); return t>=a&&t<b; }
+function lineIdxIn(e){ return SECTIONS[e.section].indexOf(e); }
+
+// ---- visuals per section: card rotation ----
+// each entry: {img: key} or {widget: fn-name}; chosen by floor(lineIdx/step)
+const CARDPLAN = {
+  'Verse 1': {step:4, items:[{img:'og_claude'},{widget:'termPls'},{widget:'spinner'},{img:'og_docs'},{img:'golden_gate'},{widget:'termHelp'}]},
+  'Verse 2': {step:3, items:[{img:'og_anthropic'},{widget:'termPrompt'},{img:'mapping'},{img:'golden_gate'},{widget:'spinner'}]},
+  'Verse 3': {step:4, items:[{widget:'termDeploy'},{widget:'termFail'},{widget:'termGrep'},{widget:'statusPage'},{widget:'statusPage'},{img:'og_anthropic'},{img:'core_views'}]},
+  'Bridge' : {step:4, items:[{widget:'contextMeter'},{widget:'termCompact'}]},
+  'Intro'  : {step:99, items:[{widget:'termIntro'}]},
+  'Outro'  : {step:99, items:[{widget:'termExit'}]},
+};
+
+// ---- widgets ----
+function termFrame(title, inner){
+  return `<div class="term"><div class="bar">●&nbsp;●&nbsp;●&nbsp;&nbsp;${title}</div>${inner}</div>`;
+}
+function typed(full, t0, t, cps){
+  const n = clamp(Math.floor((t-t0)*cps), 0, full.length);
+  return full.slice(0,n);
+}
+const CUR = '<span class="cursor"></span>';
+
+const WIDGETS = {
+  termHelp(t, t0){
+    const txt = typed(HELP, t0, t, 260);
+    return termFrame('claude --help', `<span class="dim">${escapeHtml(txt)}</span>${CUR}`);
+  },
+  termIntro(t, t0){
+    const l1 = typed('claude --permission-mode plan', t0, t, 24);
+    let out = `<span class="p">❯ </span>${escapeHtml(l1)}`;
+    if(t>t0+2.2) out += `\n\n<span class="ok">✔</span> plan mode <span class="ok">on</span> <span class="dim">(shift+tab to cycle)</span>`;
+    if(t>t0+4.2) out += `\n<span class="p">✳</span> Ready to code?`;
+    if(t>t0+6.2) out += `\n\n<span class="dim">Here is Claude's plan:</span>\n  <span class="p">1.</span> drop the beat\n  <span class="p">2.</span> they not like Claude`;
+    return termFrame('claude', out + CUR);
+  },
+  termPls(t, t0){
+    let out = `<span class="p">❯ </span>pls fix\n<span class="err">✗</span> be specific.\n\n<span class="p">❯ </span>${escapeHtml(typed('PLS FIX!!',t0,t,10))}`;
+    if(t>t0+3.5) out += `\n<span class="err">✗</span> yelling detected. still no.`;
+    if(t>t0+6.0) out += `\n\n<span class="p">❯ </span>ultrathink and fix the race in queue.ts\n<span class="ok">✔</span> now we're talking.`;
+    return termFrame('somebody else\'s agent', out+CUR);
+  },
+  termPrompt(t, t0){
+    let out = `<span class="p">❯ </span>cat CLAUDE.md | wc -l\n<span class="ok">14000</span>\n\n<span class="p">❯ </span>${escapeHtml(typed('git blame src/ | grep -c "claude"', t0, t, 22))}`;
+    if(t>t0+3.2) out += `\n<span class="ok">9741</span>  <span class="dim"># it's a group project now</span>`;
+    return termFrame('receipts', out+CUR);
+  },
+  termDeploy(t, t0){
+    let out = `<span class="dim"># friday 17:00</span>\n<span class="p">❯ </span>git push origin main\n`;
+    if(t>t0+1.5) out += `<span class="err">▲ ALERT</span> prod-api  5xx rate 97%\n`;
+    if(t>t0+3.0) out += `<span class="err">▲ ALERT</span> pager: EVERYONE\n`;
+    if(t>t0+5.0) out += `<span class="dim">vp:</span> any updates? anybody?\n`;
+    return termFrame('incident-4571', out+CUR);
+  },
+  termGrep(t, t0){
+    let out = `<span class="p">❯ </span>claude "read the stack trace, find the blast zone"\n`;
+    if(t>t0+1.2) out += `<span class="p">✳</span> Grepping services… <span class="dim">(14 parallel)</span>\n`;
+    if(t>t0+3.0) out += `<span class="ok">✔</span> found it: migrations/0087_tiny_change.sql\n`;
+    if(t>t0+5.2) out += `<span class="ok">✔</span> rollback plan drafted → approved\n`;
+    if(t>t0+7.0) out += `<span class="ok">✔</span> runbook.md written\n`;
+    return termFrame('claude · incident-4571', out+CUR);
+  },
+  termCompact(t, t0){
+    const pct = clamp(Math.floor((t-t0)*9), 0, 100);
+    let out = `<span class="p">✳</span> Compacting conversation… <span class="p">${pct}%</span>\n\n<span class="dim">summarizing 212k tokens of you\nsaying "one more small change"</span>`;
+    return termFrame('auto-compact', out);
+  },
+  termExit(t, t0){
+    let out = `<span class="p">❯ </span>${escapeHtml(typed('/exit', t0, t, 6))}\n`;
+    if(t>t0+2.4) out += `\n<span class="dim">session saved.</span>\n`;
+    if(t>t0+4.79) out += `<span class="ok">1 file changed, 14,000 insertions(+)</span>\n`;
+    if(t>t0+9.5) out += `\n<span class="p">✳</span> they not like claude.\n`;
+    return termFrame('claude', out+CUR);
+  },
+  spinner(t, t0){
+    const verbs=['Ultrathinking','Vibing','Orchestrating','Reticulating','Refactoring','Shipping'];
+    const v = verbs[Math.floor((t-t0)/2.2)%verbs.length];
+    const tok = Math.floor((t-t0)*847+312);
+    const dots = '.'.repeat(1+Math.floor((t*2)%3));
+    const rot = (t*140)%360;
+    return `<div class="term" style="display:flex;align-items:center;justify-content:center;font-size:34px">
+      <div style="text-align:center">
+      <div style="display:inline-block;transform:rotate(${rot}deg);color:${ORANGE};font-size:64px">✳</div>
+      <div style="margin-top:18px">${v}${dots} <span class="dim">(esc to interrupt)</span></div>
+      <div class="dim" style="margin-top:12px;font-size:24px">${tok.toLocaleString()} tokens · ↑ 4 files · plan mode on</div>
+      </div></div>`;
+  },
+  contextMeter(t, t0){
+    const pct = clamp(100 - (t-t0)*6.5, 4, 100);
+    const w = Math.floor(pct*9);
+    const col = pct<25?'#e05d44':ORANGE;
+    const warn = pct<25?`<div style="color:#e05d44;font-size:26px;margin-top:16px;font-weight:700">⚠ approaching auto-compact</div>`:'';
+    return `<div class="term" style="display:flex;align-items:center;justify-content:center;white-space:normal"><div style="width:940px"><div style="font-size:30px;margin-bottom:20px">Context window</div><div style="width:900px;height:34px;border-radius:17px;background:#2a2825;overflow:hidden"><div style="width:${w}px;height:34px;background:${col};border-radius:17px"></div></div><div class="dim" style="margin-top:14px;font-size:26px">${Math.floor(pct)}% left until auto-compact</div>${warn}</div></div>`;
+  },
+  termFail(t, t0){
+    let out = `<span class="p">❯ </span>summon the demo-reel chatbot\n`;
+    if(t>t0+1.4) out += `<span class="dim">"I sincerely apologize for the outage\n I have just made worse."</span>\n`;
+    if(t>t0+4.0) out += `\n<span class="p">❯ </span>copilot suggests: <span class="dim">turn it off?</span>\n`;
+    if(t>t0+6.2) out += `<span class="p">❯ </span>gemini: <span class="dim">wrote a summary. logged off.</span>\n`;
+    return termFrame('everyone else · incident-4571', out+CUR);
+  },
+  statusPage(t, t0){
+    // flips green exactly on the "status page green" line (Verse 3, line 17)
+    const flipAt = (SECTIONS['Verse 3'] && SECTIONS['Verse 3'][17]) ? SECTIONS['Verse 3'][17].start + 0.9 : t0 + 4.7;
+    const green = t > flipAt;
+    const c = green?'#7fb069':'#e05d44';
+    const rows = ['api','web','agents','mcp-gateway'].map((s,i)=>{
+      const g = green || i>=2;
+      return `<div style="display:flex;justify-content:space-between;width:820px;padding:10px 0;border-bottom:1px solid #2a2825">
+        <span>${s}</span><span style="color:${g?'#7fb069':'#e05d44'};font-weight:700">${g?'● operational':'● major outage'}</span></div>`;
+    }).join('');
+    return `<div class="term" style="display:flex;align-items:center;justify-content:center">
+      <div><div style="font-size:34px;margin-bottom:8px;color:${c};font-weight:700">${green?'All systems operational':'Major outage'}</div>
+      <div class="dim" style="font-size:22px;margin-bottom:18px">status.yourstartup.dev · MTTR 6 min</div>${rows}</div></div>`;
+  },
+};
+
+function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+// ---- toasts (MCP etc.) ----
+const TOASTS = [
+  {match:/MCP down/, dur:5, html:`<span class="t">✗ MCP error</span> — server "context7" disconnected<br><span style="opacity:.7">reconnecting… (attempt 7)</span>`},
+  {match:/pager screaming/, dur:5, html:`<span class="t">▲ PagerDuty</span> — SEV-1 · prod-api error budget: gone`},
+  {match:/hallucinate imports/, dur:4.5, html:`<span class="t">✗ ModuleNotFoundError</span> — 'left_pad_ultra_pro'<br><span style="opacity:.7">(package does not exist. never did.)</span>`},
+  {match:/rate limit said/, dur:4.5, html:`<span class="t">429</span> — too many requests<br><span style="opacity:.7">try again in 4 hours :)</span>`},
+  {match:/System prompt leaked/, dur:4.5, html:`<span class="t">📄 leak.txt</span> — "You are Claude…"<br><span style="opacity:.7">trending · 1.2M views</span>`},
+];
+
+// ---- lyric words ----
+const lyricCache = {};
+function lyricSpans(e){
+  if(lyricCache[e.i]) return lyricCache[e.i];
+  const words = e.text.split(' ').map(w=>{
+    const ad = /^\(.*\)[,.!?…]*$/.test(w);
+    return {w, ad};
+  });
+  return lyricCache[e.i]=words;
+}
+
+// ---- main render ----
+function renderAt(t){
+  const e = evAt(t);
+  const p = pulse(t);
+  const bi = beatIdx(t);
+
+  // progress + labels
+  $('progress').style.width = (t/DUR*1920)+'px';
+  const secName = e ? e.section : (t<EV[0].start?'Intro':'Outro');
+  $('secLabel').innerHTML = `<b>✳</b> NOT LIKE CLAUDE <span style="opacity:.55">— ${secName.toUpperCase()}</span>`;
+
+  // global camera: slow zoom + beat punch on hooks
+  const inHook = e && e.style==='hook';
+  const zoom = 1 + 0.015*Math.sin(t*0.10) + (inHook? 0.012*p : 0.006*p);
+  const shake = inHook ? 5*p : 0;
+  const sx = (rnd(bi*3+1)-0.5)*2*shake, sy = (rnd(bi*7+2)-0.5)*2*shake;
+  $('stage').style.transform = `scale(${zoom}) translate(${sx}px,${sy}px)`;
+
+  // tint: red during incident (verse 3 first half), warm on hooks
+  let tint = 0;
+  if(inSec(t,'Verse 3')){
+    const [a] = secBounds('Verse 3');
+    const li = e? lineIdxIn(e):0;
+    if(li<=8) tint = 0.22+0.08*p; // fire
+  }
+  if(inHook){
+    $('tint').style.background = '#D97757';
+    $('tint').style.opacity = 0.10*p;
+  } else {
+    $('tint').style.background = '#e05d44';
+    $('tint').style.opacity = tint;
+  }
+
+  // flash on section starts
+  let flash = 0;
+  for(const name of ['Hook','Hook 2','Verse 1','Verse 3']){
+    const [a] = secBounds(name);
+    if(t>=a && t<a+0.22) flash = 1-(t-a)/0.22;
+  }
+  $('flash').style.opacity = flash*0.55;
+
+  // particles
+  drawParticles(t,p);
+
+  // starburst backdrop
+  const b = $('burst');
+  const bigBurst = inHook || t<EV[0].start || inSec(t,'Outro');
+  b.style.opacity = inHook ? 0.15+0.05*p : bigBurst ? 0.30+0.12*p : 0.13+0.05*p;
+  const bs = (inHook?1.55:bigBurst?1.06:0.9) + 0.05*p;
+  b.style.transform = `translate(-50%,-50%) rotate(${t*9}deg) scale(${bs})`;
+
+  // slam vs card
+  if(inHook && e){
+    $('cardWrap').style.opacity = 0;
+    $('widget').style.opacity = 0;
+    renderSlam(t,e,p);
+  } else {
+    $('slam').style.display='none';
+    renderCard(t,e,p);
+  }
+
+  // lyric bar (hidden during slams)
+  renderLyric(t,e,inHook);
+
+  // toast
+  renderToast(t,e);
+}
+
+function currentVisual(t,e){
+  if(!e) return null;
+  const plan = CARDPLAN[e.section];
+  if(!plan) return null;
+  const li = lineIdxIn(e);
+  const k = Math.min(Math.floor(li/plan.step), plan.items.length-1);
+  // visual start time = start of its line group
+  const g0 = SECTIONS[e.section][Math.min(k*plan.step, SECTIONS[e.section].length-1)].start;
+  return {...plan.items[k], t0:g0, key:e.section+'/'+k};
+}
+
+let lastCardKey=null;
+function renderCard(t,e,p){
+  const vis = currentVisual(t,e);
+  const wrap=$('cardWrap'), card=$('card'), wid=$('widget');
+  if(!vis){
+    // pre-intro: nothing but burst + title handled by intro widget once events start
+    wrap.style.opacity=0; wid.style.opacity=0; return;
+  }
+  const age = t - vis.t0;
+  const ein = spring(clamp(age/0.55,0,1));
+  const bob = Math.sin(t*1.25 + 1.7)*9;
+  const tilt = Math.sin(t*0.62)*1.6 + (rnd(vis.t0)*4-2)*0.4;
+  const sc = ein*(1+0.045*p);
+  if(vis.img){
+    wid.style.opacity=0;
+    wrap.style.opacity = clamp(age/0.3,0,1);
+    wrap.style.transform = `translate(-50%,-50%) translateY(${bob}px) rotate(${tilt}deg) scale(${sc})`;
+    if(lastCardKey!==vis.key){ card.innerHTML = `<img src="${IMG[vis.img]}">`; lastCardKey=vis.key; }
+    card.style.display='block';
+  } else {
+    wrap.style.opacity=0;
+    wid.style.opacity = clamp(age/0.3,0,1);
+    wid.style.transform = `translate(-50%,-50%) translateY(${bob*0.6}px) scale(${0.98+0.02*ein+0.03*p})`;
+    wid.style.width='1100px'; wid.style.height='580px';
+    wid.innerHTML = WIDGETS[vis.widget](t, vis.t0);
+    lastCardKey=null;
+  }
+}
+
+function renderSlam(t,e,p){
+  const s=$('slam');
+  s.style.display='flex';
+  const txt = e.text;
+  const core = /they not like claude/i;
+  let pre='', big='THEY NOT LIKE CLAUDE';
+  const m = txt.match(/^(.*?)(they not like claude|not like claude)/i);
+  if(m && m[1].trim()) pre = m[1].replace(/[—,-]\s*$/,'').trim();
+  if(!core.test(txt)) { pre=''; big = txt.replace(/\(.*?\)/g,'').trim(); }
+  const age = t-e.start;
+  const pop = spring(clamp(age/0.4,0,1));
+  const hookNum = e.section==='Hook'?0:1;
+  const li = lineIdxIn(e);
+  const orange = (li+hookNum)%2===0;
+  $('slamPre').textContent = pre.toUpperCase();
+  $('slamPre').style.opacity = pre?0.9:0;
+  const bigEl=$('slamBig');
+  bigEl.textContent = big.toUpperCase();
+  bigEl.style.color = orange?ORANGE:CREAM;
+  bigEl.style.textShadow = orange? '0 0 90px rgba(217,119,87,.45)':'0 0 90px rgba(240,238,230,.25)';
+  const rot = (hookNum? 5:-5) + (li%2?1.5:-1.5);
+  const sc = (0.9+0.22*pop)*(1+0.05*p);
+  s.style.transform = `rotate(${rot}deg) scale(${sc})`;
+  s.style.opacity = clamp(age/0.08,0,1);
+  // size to fit
+  bigEl.style.fontSize = big.length>26 ? '120px':'170px';
+}
+
+function renderLyric(t,e,inHook){
+  const L=$('lyric'), N=$('nextline');
+  if(!e || inHook){ L.style.opacity=0; N.style.opacity=0; return; }
+  const words = lyricSpans(e);
+  const dur = Math.max(e.end-e.start, 0.1);
+  const prog = clamp((t-e.start)/(dur*0.92),0,1);
+  const total = words.filter(w=>!w.ad).length;
+  const done = prog*total;
+  let html='', wi=0;
+  for(const {w,ad} of words){
+    if(ad){ html+=`<span class="w ad">${escapeHtml(w)}</span>`; continue; }
+    const cls = wi<Math.floor(done)?'done': wi<done?'cur':'todo';
+    const curScale = cls==='cur'? 1.08:1;
+    html+=`<span class="w ${cls}" style="transform:scale(${curScale})">${escapeHtml(w)}</span>`;
+    wi++;
+  }
+  L.innerHTML=html;
+  const age=t-e.start;
+  L.style.opacity = clamp(age/0.15,0,1);
+  L.style.transform = `translateX(-50%) translateY(${(1-easeOut(clamp(age/0.3,0,1)))*26}px)`;
+  L.style.fontSize = e.text.length>58?'56px':'66px';
+  // next line preview
+  const nx = nextEv(e);
+  if(nx && nx.section===e.section){
+    N.textContent = nx.text.replace(/\(.*?\)/g,'').replace(/\s+/g,' ').replace(/\s,/g,',').trim();
+    N.style.opacity = 0.85;
+  } else N.style.opacity=0;
+}
+
+function renderToast(t,e){
+  const el=$('toast');
+  let show=null;
+  if(e){ for(const c of TOASTS){ if(c.match.test(e.text) && t-e.start<c.dur) show=c; } }
+  if(show){
+    const age=t-e.start;
+    el.innerHTML=show.html;
+    el.style.opacity = clamp(age/0.25,0,1) * (age>show.dur-0.4? (show.dur-age)/0.4:1);
+    el.style.transform = `translateX(${(1-easeOut(clamp(age/0.35,0,1)))*80}px)`;
+  } else el.style.opacity=0;
+}
+
+// particles: floating orange asterisks + dust
+const PN=42;
+function drawParticles(t,p){
+  const ctx = $('particles').getContext('2d');
+  ctx.clearRect(0,0,1920,1080);
+  for(let i=0;i<PN;i++){
+    const speed = 12+rnd(i)*26;
+    const x = (rnd(i*2)*1920 + Math.sin(t*0.3+i)*40 + t*6*(rnd(i*5)-0.5)) % 1920;
+    let y = (rnd(i*3)*1080 - t*speed) % 1080; if(y<0) y+=1080;
+    const s = 8+rnd(i*7)*20;
+    const star = rnd(i*11)>0.55;
+    const a = (0.05+rnd(i*13)*0.14)*(1+p*0.8);
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.rotate(t*(rnd(i*17)-0.5)*2 + i);
+    ctx.globalAlpha = a;
+    if(star){
+      ctx.fillStyle='#D97757';
+      ctx.font = `${s}px sans-serif`;
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('✳',0,0);
+    } else {
+      ctx.fillStyle='#F0EEE6';
+      ctx.beginPath(); ctx.arc(0,0,s*0.12,0,7); ctx.fill();
+    }
+    ctx.restore();
+  }
+}
+
+// ---- cover mode (thumbnail) ----
+function renderCover(){
+  $('stage').style.transform='none';
+  renderAt(0.1);
+  $('cardWrap').style.opacity=0; $('widget').style.opacity=0;
+  $('lyric').style.opacity=0; $('nextline').style.opacity=0; $('secLabel').style.opacity=0;
+  $('burst').style.opacity=0.5;
+  $('burst').style.transform='translate(-50%,-50%) rotate(12deg) scale(1.15)';
+  const s=$('slam'); s.style.display='flex'; s.style.opacity=1; s.style.transform='rotate(-5deg) scale(1)';
+  $('slamPre').textContent='CLAUDE CODE PRESENTS'; $('slamPre').style.opacity=0.9;
+  const b=$('slamBig'); b.textContent='NOT LIKE CLAUDE'; b.style.color=ORANGE; b.style.fontSize='190px';
+  b.style.textShadow='0 0 120px rgba(217,119,87,.5)';
+  $('badge').textContent='a parody · they not like claude';
+}
+
+window.renderAt = renderAt;
+window.renderCover = renderCover;
+renderAt(0);
+</script>
+</body>
+</html>
