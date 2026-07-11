@@ -132,8 +132,14 @@ def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR) -> np.ndarray:
             shifted = fr
         out[i: i + N] += shifted * win
         norm[i: i + N] += win ** 2
-    out /= np.maximum(norm, 1e-4)
-    return out[: len(y)]
+    # floor the window-sum: dividing by the near-zero edges makes huge spikes,
+    # and a single spike later crushes the whole track's peak normalization
+    out /= np.maximum(norm, 0.25)
+    out = out[: len(y)]
+    rms_in = float(np.sqrt((y ** 2).mean())) or 1e-6
+    rms_out = float(np.sqrt((out ** 2).mean())) or 1e-6
+    out *= rms_in / rms_out
+    return np.clip(out, -1.0, 1.0)
 
 
 def tempo_fit(y: np.ndarray, target_sec: float) -> np.ndarray:
