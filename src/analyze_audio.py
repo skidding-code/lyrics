@@ -48,26 +48,65 @@ def estimate_bpm_coarse(env: np.ndarray, sr: int = SR, hop: int = 256) -> float:
     return best_bpm
 
 
-def refine_grid(env: np.ndarray, bpm0: float, sr: int = SR, hop: int = 256) -> tuple:
-    """Joint fine search over (bpm, offset) maximizing mean onset energy ON the beats.
+def clap_onsets(y: np.ndarray, sr: int = SR) -> np.ndarray:
+    """Onset envelope of the 1.5-6 kHz band (claps/snares sit ON beats 2&4),
+    5 ms resolution. Much more trustworthy for phase than broadband flux,
+    which happily locks onto eighth-note hats half a beat off."""
+    spec = np.fft.rfft(y)
+    freqs = np.fft.rfftfreq(len(y), 1 / sr)
+    band = np.fft.irfft(spec * ((freqs >= 1500) & (freqs <= 6000)), len(y)).astype(np.float32)
+    env = np.abs(band)
+    hop = int(0.005 * sr)
+    m = len(env) // hop
+    e = env[: m * hop].reshape(m, hop).max(axis=1)
+    on = np.diff(e)
+    on[on < 0] = 0
+    return on
 
-    The autocorrelation estimate can land ~0.1 BPM off and knows nothing about phase;
-    over a 4.5 min track that is an audible drift, so score the grid directly."""
-    fps = sr / hop
 
-    def score(bpm: float, off: float) -> float:
-        period = fps * 60 / bpm
-        idx = np.arange(off * fps, len(env), period).astype(int)
-        return float(env[idx].mean())
+def refine_grid(on: np.ndarray, bpm0: float, dur: float) -> tuple:
+    """Tempo by DRIFT MINIMIZATION, phase from the full-track clap sweep.
 
-    best = (bpm0, 0.0, -1.0)
-    for bpm in np.arange(bpm0 - 0.7, bpm0 + 0.7, 0.01):
-        period = 60 / bpm
+    A wrong tempo shows up as clap phase sliding across the song (a global
+    best-fit hides it: right in the middle, up to half a beat off at the
+    ends — audibly 'early'). The true tempo is the one where the locally
+    measured phase is constant in every window."""
+    fps = 200.0
+    windows = [(a, min(a + 40, dur - 5)) for a in range(20, int(dur) - 45, 40)]
+
+    def local_phase(period: float, a: float, b: float) -> float:
+        best = (0.0, -1.0)
         for off in np.arange(0, period, 0.005):
-            s = score(bpm, off)
-            if s > best[2]:
-                best = (float(bpm), float(off), s)
-    return best
+            start = a + (off - (a % period)) % period
+            idx = (np.arange(start, b, period) * fps).astype(int)
+            idx = idx[(idx >= a * fps) & (idx < min(b * fps, len(on)))]
+            if not len(idx):
+                continue
+            s = float(on[idx].mean())
+            if s > best[1]:
+                best = (off, s)
+        return best[0]
+
+    best = (bpm0, 1e9)
+    for bpm in np.arange(bpm0 - 0.5, bpm0 + 0.5, 0.01):
+        period = 2 * 60 / bpm  # claps repeat every 2 beats
+        phases = [local_phase(period, a, b) for a, b in windows]
+        rel = [(p - phases[0] + period / 2) % period - period / 2 for p in phases]
+        spread = max(rel) - min(rel)
+        if spread < best[1]:
+            best = (float(bpm), float(spread))
+    bpm = best[0]
+
+    # global clap phase at the drift-free tempo -> beat offset (claps sit ON beats)
+    beat = 60 / bpm
+    off_best = (0.0, -1.0)
+    for off in np.arange(0, beat, 0.0025):
+        idx = (np.arange(off, dur, beat) * fps).astype(int)
+        idx = idx[idx < len(on)]
+        s = float(on[idx].mean())
+        if s > off_best[1]:
+            off_best = (float(off), s)
+    return bpm, off_best[0], best[1]
 
 
 def rms_profile(y: np.ndarray, sr: int = SR, step: float = 0.5) -> list:
@@ -82,8 +121,9 @@ def main() -> None:
     dur = len(y) / SR
     env = onset_envelope(y)
     bpm0 = estimate_bpm_coarse(env)
-    bpm, off, grid_score = refine_grid(env, bpm0)
-    print(f"grid refined: coarse {bpm0:.1f} -> {bpm:.2f} BPM, offset {off:.3f}s, score {grid_score:.3f}")
+    on = clap_onsets(y)
+    bpm, off, spread = refine_grid(on, bpm0, dur)
+    print(f"grid refined: coarse {bpm0:.1f} -> {bpm:.2f} BPM, offset {off:.3f}s, phase spread {spread*1000:.0f}ms")
     data = {
         "duration_sec": round(dur, 3),
         "bpm": round(bpm, 2),

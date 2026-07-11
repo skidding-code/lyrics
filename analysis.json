@@ -1,9 +1,9 @@
 {
  "duration_sec": 272.208,
- "bpm": 101.0,
- "beat_offset_sec": 0.585,
- "sec_per_beat": 0.59406,
- "sec_per_bar": 2.37624,
+ "bpm": 100.77,
+ "beat_offset_sec": 0.013,
+ "sec_per_beat": 0.59542,
+ "sec_per_bar": 2.38166,
  "rms_step_sec": 0.5,
  "rms": [
   0.05156,

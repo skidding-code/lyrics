@@ -168,14 +168,14 @@ def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR,
     return np.clip(out, -1.0, 1.0)
 
 
-def tempo_fit(y: np.ndarray, target_sec: float) -> np.ndarray:
-    """Fit clip to target_sec using ffmpeg atempo — compress long lines AND stretch
-    short ones, so every line rides its whole bar instead of finishing early."""
+def tempo_fit(y: np.ndarray, target_sec: float, stretch: bool = True) -> np.ndarray:
+    """Fit clip to target_sec using ffmpeg atempo — compress long lines AND (mildly)
+    stretch short ones, so every line rides its bar instead of finishing early."""
     cur = len(y) / SR
     speed = cur / target_sec
-    if 0.97 <= speed <= 1.0:
+    if (0.97 <= speed <= 1.0) or (speed < 1.0 and not stretch):
         return y
-    speed = max(speed, 0.6)  # don't slur short lines into sludge
+    speed = max(speed, 0.8)  # mild stretch only; hard slow-down slurs and drags
     stages = []
     while speed > 2.0:
         stages.append(2.0)
@@ -237,12 +237,14 @@ def main() -> None:
             y = trim_silence(espeak_line(text, wpm, pitch, amp))
         slot = (ev["end"] - ev["start"]) * 0.96
         pre_len = len(y)
-        y = tempo_fit(y, slot)
+        # intro/outro whispers keep their natural pacing — stretching them drawls
+        y = tempo_fit(y, slot, stretch=ev["style"] not in ("intro", "outro"))
         if args.engine == "piper":
             y = autotune(y, scale, voiced_thr=0.10, vib_depth=0.028)
         else:
             y = autotune(y, scale)
-        start = int(ev["start"] * SR)
+        # sit slightly behind the beat (hip-hop pocket), never ahead of it
+        start = int((ev["start"] + 0.06) * SR)
         end = min(start + len(y), total)
         track[start:end] += y[: end - start] * gain
 
