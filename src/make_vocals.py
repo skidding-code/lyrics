@@ -71,6 +71,71 @@ def espeak_line(text: str, wpm: int, pitch: int, amp: int) -> np.ndarray:
     return np.frombuffer(raw, dtype=np.float32)
 
 
+def trim_silence(y: np.ndarray, thr: float = 0.012) -> np.ndarray:
+    idx = np.where(np.abs(y) > thr)[0]
+    return y[idx[0]: idx[-1] + 1] if len(idx) else y
+
+
+def detect_root_hz(inst: np.ndarray, sr: int = SR) -> float:
+    """Strongest pitch class of the instrumental -> root of the autotune scale."""
+    seg = inst[60 * sr: 120 * sr]
+    mag = np.abs(np.fft.rfft(seg * np.hanning(len(seg))))
+    freqs = np.fft.rfftfreq(len(seg), 1 / sr)
+    chroma = np.zeros(12)
+    band = (freqs > 55) & (freqs < 1000)
+    pc = (np.round(12 * np.log2(freqs[band] / 55.0)) % 12).astype(int)
+    np.add.at(chroma, pc, mag[band] ** 2)
+    k = int(chroma.argmax())
+    return 55.0 * 2 ** (k / 12)  # root in the A1=55Hz octave
+
+
+def scale_freqs_for(root: float) -> np.ndarray:
+    """Minor pentatonic on the root, spread over the espeak vocal range (~70-300 Hz)."""
+    semis = [0, 3, 5, 7, 10]
+    notes = []
+    for octave in (-1, 0, 1, 2):
+        for s in semis:
+            f = root * 2 ** (octave + s / 12)
+            if 70 <= f <= 300:
+                notes.append(f)
+    return np.array(sorted(notes))
+
+
+def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR) -> np.ndarray:
+    """Hard frame-wise pitch quantization to the scale + vibrato.
+
+    Resampling each frame (formants shift too) then overlap-adding at the
+    original hop is exactly the cheap 'robot got autotuned' sound we want."""
+    N, H = 2048, 512
+    win = np.hanning(N).astype(np.float32)
+    out = np.zeros(len(y) + N, dtype=np.float32)
+    norm = np.zeros(len(y) + N, dtype=np.float32)
+    lo, hi = int(sr / 300), int(sr / 70)
+    for i in range(0, max(len(y) - N, 1), H):
+        fr = y[i: i + N]
+        if len(fr) < N:
+            fr = np.pad(fr, (0, N - len(fr)))
+        f = fr * win
+        ac = np.correlate(f, f, "full")[N - 1:]
+        seg = ac[lo:hi]
+        voiced = ac[0] > 1e-6 and seg.max() > 0.22 * ac[0]
+        if voiced:
+            f0 = sr / (lo + int(seg.argmax()))
+            target = scale[np.argmin(np.abs(np.log(scale / f0)))]
+            vib = 1.0 + 0.014 * np.sin(2 * np.pi * 5.5 * i / sr)
+            r = float(target * vib / f0)
+            idx = np.arange(int(N * min(r, 2.5))) / r
+            idx = idx[idx < N - 1]
+            shifted = np.interp(idx, np.arange(N), fr).astype(np.float32)
+            shifted = shifted[:N] if len(shifted) >= N else np.pad(shifted, (0, N - len(shifted)))
+        else:
+            shifted = fr
+        out[i: i + N] += shifted * win
+        norm[i: i + N] += win ** 2
+    out /= np.maximum(norm, 1e-4)
+    return out[: len(y)]
+
+
 def tempo_fit(y: np.ndarray, target_sec: float) -> np.ndarray:
     """Fit clip into target_sec using ffmpeg atempo (chained for >2x)."""
     cur = len(y) / SR
@@ -98,14 +163,25 @@ def main() -> None:
     total = int((analysis["duration_sec"] + 1) * SR)
     track = np.zeros(total, dtype=np.float32)
 
+    raw = subprocess.run(
+        [FFMPEG, "-v", "error", "-i", str(ROOT / "audio" / "instrumental.mp3"),
+         "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
+        capture_output=True, check=True,
+    ).stdout
+    inst_full = np.frombuffer(raw, dtype=np.float32)
+    root = detect_root_hz(inst_full)
+    scale = scale_freqs_for(root)
+    print(f"autotune root {root:.1f} Hz, scale: {[round(f) for f in scale]}")
+
     for ev in timing["events"]:
         wpm, pitch, amp, gain = VOICES[ev["style"]]
         text = speakable(ev["tts"])
         if not text:
             continue
-        y = espeak_line(text, wpm, pitch, amp)
+        y = trim_silence(espeak_line(text, wpm, pitch, amp))
         slot = (ev["end"] - ev["start"]) * 0.96
         y = tempo_fit(y, slot)
+        y = autotune(y, scale)
         start = int(ev["start"] * SR)
         end = min(start + len(y), total)
         track[start:end] += y[: end - start] * gain

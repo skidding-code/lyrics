@@ -33,7 +33,7 @@ def onset_envelope(y: np.ndarray, hop: int = 256, win: int = 1024) -> np.ndarray
     return env
 
 
-def estimate_bpm(env: np.ndarray, sr: int = SR, hop: int = 256) -> float:
+def estimate_bpm_coarse(env: np.ndarray, sr: int = SR, hop: int = 256) -> float:
     fps = sr / hop
     env = env - env.mean()
     ac = np.correlate(env, env, mode="full")[len(env) - 1 :]
@@ -48,17 +48,26 @@ def estimate_bpm(env: np.ndarray, sr: int = SR, hop: int = 256) -> float:
     return best_bpm
 
 
-def beat_offset(env: np.ndarray, bpm: float, sr: int = SR, hop: int = 256) -> float:
-    """Phase of the beat grid: offset (s) of the first beat maximizing onset alignment."""
+def refine_grid(env: np.ndarray, bpm0: float, sr: int = SR, hop: int = 256) -> tuple:
+    """Joint fine search over (bpm, offset) maximizing mean onset energy ON the beats.
+
+    The autocorrelation estimate can land ~0.1 BPM off and knows nothing about phase;
+    over a 4.5 min track that is an audible drift, so score the grid directly."""
     fps = sr / hop
-    period = fps * 60 / bpm
-    best_off, best_val = 0.0, -1.0
-    for frac in np.arange(0, 1, 0.01):
-        idx = np.arange(frac * period, len(env), period).astype(int)
-        val = env[idx].sum() / len(idx)
-        if val > best_val:
-            best_val, best_off = val, frac * period
-    return best_off / fps
+
+    def score(bpm: float, off: float) -> float:
+        period = fps * 60 / bpm
+        idx = np.arange(off * fps, len(env), period).astype(int)
+        return float(env[idx].mean())
+
+    best = (bpm0, 0.0, -1.0)
+    for bpm in np.arange(bpm0 - 0.7, bpm0 + 0.7, 0.01):
+        period = 60 / bpm
+        for off in np.arange(0, period, 0.005):
+            s = score(bpm, off)
+            if s > best[2]:
+                best = (float(bpm), float(off), s)
+    return best
 
 
 def rms_profile(y: np.ndarray, sr: int = SR, step: float = 0.5) -> list:
@@ -72,8 +81,9 @@ def main() -> None:
     y = decode_mono(AUDIO)
     dur = len(y) / SR
     env = onset_envelope(y)
-    bpm = estimate_bpm(env)
-    off = beat_offset(env, bpm)
+    bpm0 = estimate_bpm_coarse(env)
+    bpm, off, grid_score = refine_grid(env, bpm0)
+    print(f"grid refined: coarse {bpm0:.1f} -> {bpm:.2f} BPM, offset {off:.3f}s, score {grid_score:.3f}")
     data = {
         "duration_sec": round(dur, 3),
         "bpm": round(bpm, 2),
