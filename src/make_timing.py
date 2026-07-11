@@ -21,6 +21,17 @@ def snap_beat(t: float) -> float:
     return OFF + n * BEAT
 
 
+def snap_bar(t: float) -> float:
+    """Snap to a true DOWNBEAT (bar start), not just any beat.
+
+    Beat-level snapping put section starts on clap beats (2/4) — metrically
+    on-beat but half a bar off the music's phrasing, i.e. 'in time but out
+    of sync'. Kick-pattern scoring confirms bars start on the beat-offset
+    family: offset + k*4*beat."""
+    n = round((t - OFF) / (4 * BEAT))
+    return OFF + n * 4 * BEAT
+
+
 # section -> (target start sec, bars per line, style)
 # Anchored to the instrumental's dropout bars (near-silent bars at 0.6s, 24.3s,
 # 67.1s, 157.4s, 209.7s — measured kick-band phrase pivots): intro whispers over
@@ -66,7 +77,7 @@ def main() -> None:
     events = []
     for name, cfg in PLAN.items():
         lines = sections[name]
-        t = snap_beat(cfg["start"])
+        t = snap_bar(cfg["start"])
         spacing = (
             INTRO_BARS if name == "Intro" else OUTRO_BARS if name == "Outro" else [cfg["bars_per_line"]] * len(lines)
         )
