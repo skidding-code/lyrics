@@ -120,19 +120,36 @@ def main() -> None:
         input=pcm.tobytes(),
         check=True,
     )
-    # mix: instrumental + vocals (vocals ride on top; light echo on the whole vocal bus)
+    # mix in numpy: soft-clipped loud vocals, instrumental ducked by an explicit
+    # vocal-activity envelope. Deterministic and measurable.
+    raw = subprocess.run(
+        [FFMPEG, "-v", "error", "-i", str(ROOT / "audio" / "instrumental.mp3"),
+         "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
+        capture_output=True, check=True,
+    ).stdout
+    inst = np.frombuffer(raw, dtype=np.float32).copy()
+    n = min(len(inst), len(track))
+    inst, voc = inst[:n], track[:n].copy()
+
+    # vocal bus: drive into tanh soft clip -> high RMS, robot grit; slap echo
+    voc = np.tanh(voc * 5.0) * 0.55
+    echo = int(0.060 * SR)
+    voc[echo:] += 0.22 * voc[:-echo]
+
+    # duck envelope from vocal activity (attack/release smoothing ~80ms)
+    act = np.abs(voc)
+    win = int(0.080 * SR)
+    kernel = np.ones(win, dtype=np.float32) / win
+    env = np.convolve(act, kernel, mode="same")
+    duck = 1.0 - 0.60 * np.clip(env / 0.06, 0, 1)
+
+    mix = inst * 0.55 * duck + voc
+    mix = np.tanh(mix * 1.1) * 0.92  # gentle master saturation/limit
+    pcm = (np.clip(mix, -1, 1) * 32767).astype(np.int16)
     subprocess.run(
-        [
-            FFMPEG, "-y", "-v", "error",
-            "-i", str(ROOT / "audio" / "instrumental.mp3"),
-            "-i", str(vocals),
-            "-filter_complex",
-            "[1:a]aecho=0.6:0.25:60:0.25,volume=1.9[v];"
-            "[0:a]volume=0.85[b];"
-            "[b][v]amix=inputs=2:duration=first:normalize=0[out]",
-            "-map", "[out]", "-ar", str(SR), str(BUILD / "mix.wav"),
-        ],
-        check=True,
+        [FFMPEG, "-y", "-v", "error", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-",
+         str(BUILD / "mix.wav")],
+        input=pcm.tobytes(), check=True,
     )
     print("wrote", vocals, "and", BUILD / "mix.wav")
 
