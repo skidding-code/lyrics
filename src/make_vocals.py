@@ -124,11 +124,14 @@ def scale_freqs_for(root: float) -> np.ndarray:
     return np.array(sorted(notes))
 
 
-def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR) -> np.ndarray:
+def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR,
+             voiced_thr: float = 0.22, vib_depth: float = 0.014) -> np.ndarray:
     """Hard frame-wise pitch quantization to the scale + vibrato.
 
     Resampling each frame (formants shift too) then overlap-adding at the
-    original hop is exactly the cheap 'robot got autotuned' sound we want."""
+    original hop is exactly the cheap 'robot got autotuned' sound we want.
+    Breathier voices (piper) need a lower voiced_thr or most frames pass
+    through untouched and the effect disappears."""
     N, H = 2048, 512
     win = np.hanning(N).astype(np.float32)
     out = np.zeros(len(y) + N, dtype=np.float32)
@@ -141,11 +144,11 @@ def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR) -> np.ndarray:
         f = fr * win
         ac = np.correlate(f, f, "full")[N - 1:]
         seg = ac[lo:hi]
-        voiced = ac[0] > 1e-6 and seg.max() > 0.22 * ac[0]
+        voiced = ac[0] > 1e-6 and seg.max() > voiced_thr * ac[0]
         if voiced:
             f0 = sr / (lo + int(seg.argmax()))
             target = scale[np.argmin(np.abs(np.log(scale / f0)))]
-            vib = 1.0 + 0.014 * np.sin(2 * np.pi * 5.5 * i / sr)
+            vib = 1.0 + vib_depth * np.sin(2 * np.pi * 5.5 * i / sr)
             r = float(target * vib / f0)
             idx = np.arange(int(N * min(r, 2.5))) / r
             idx = idx[idx < N - 1]
@@ -166,11 +169,13 @@ def autotune(y: np.ndarray, scale: np.ndarray, sr: int = SR) -> np.ndarray:
 
 
 def tempo_fit(y: np.ndarray, target_sec: float) -> np.ndarray:
-    """Fit clip into target_sec using ffmpeg atempo (chained for >2x)."""
+    """Fit clip to target_sec using ffmpeg atempo — compress long lines AND stretch
+    short ones, so every line rides its whole bar instead of finishing early."""
     cur = len(y) / SR
-    if cur <= target_sec:
-        return y
     speed = cur / target_sec
+    if 0.97 <= speed <= 1.0:
+        return y
+    speed = max(speed, 0.6)  # don't slur short lines into sludge
     stages = []
     while speed > 2.0:
         stages.append(2.0)
@@ -233,7 +238,10 @@ def main() -> None:
         slot = (ev["end"] - ev["start"]) * 0.96
         pre_len = len(y)
         y = tempo_fit(y, slot)
-        y = autotune(y, scale)
+        if args.engine == "piper":
+            y = autotune(y, scale, voiced_thr=0.10, vib_depth=0.028)
+        else:
+            y = autotune(y, scale)
         start = int(ev["start"] * SR)
         end = min(start + len(y), total)
         track[start:end] += y[: end - start] * gain
