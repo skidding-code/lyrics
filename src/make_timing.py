@@ -21,20 +21,24 @@ def snap_beat(t: float) -> float:
     return OFF + n * BEAT
 
 
-# section -> (target start sec from energy map, bars per line, style)
+# section -> (target start sec, bars per line, style)
+# Anchored to the instrumental's dropout bars (near-silent bars at 0.6s, 24.3s,
+# 67.1s, 157.4s, 209.7s — measured kick-band phrase pivots): intro whispers over
+# the quiet bar 0, Verse 1 enters with the rolling beat and runs 24 bars to the
+# 67.1s dropout, each hook slams in right after a dropout.
 PLAN = {
-    "Intro": dict(start=9.9, bars_per_line=None, style="intro"),  # handcrafted spacing
-    "Verse 1": dict(start=30.73, bars_per_line=1, style="verse"),
-    "Hook": dict(start=92.5, bars_per_line=1, style="hook"),
-    "Bridge": dict(start=111.5, bars_per_line=1, style="bridge"),
-    "Verse 2": dict(start=130.6, bars_per_line=1, style="verse"),
-    "Hook 2": dict(start=163.9, bars_per_line=1, style="hook"),
-    "Verse 3": dict(start=182.95, bars_per_line=1, style="verse"),
-    "Outro": dict(start=244.8, bars_per_line=None, style="outro"),  # handcrafted spacing
+    "Intro": dict(start=0.59, bars_per_line=None, style="intro"),  # handcrafted spacing
+    "Verse 1": dict(start=10.09, bars_per_line=1, style="verse"),
+    "Hook": dict(start=69.5, bars_per_line=1, style="hook"),
+    "Bridge": dict(start=90.9, bars_per_line=1, style="bridge"),
+    "Verse 2": dict(start=114.6, bars_per_line=1, style="verse"),
+    "Hook 2": dict(start=159.8, bars_per_line=1, style="hook"),
+    "Verse 3": dict(start=178.8, bars_per_line=1, style="verse"),
+    "Outro": dict(start=243.0, bars_per_line=None, style="outro"),  # handcrafted spacing
 }
 
 # sparse spacing (in bars) for intro/outro lines
-INTRO_BARS = [2, 2, 1.5, 1.5, 1, 1]
+INTRO_BARS = [1, 0.75, 0.75, 0.5, 0.5, 0.5]
 OUTRO_BARS = [1, 1, 1, 1, 2, 1, 1, 2]
 
 
