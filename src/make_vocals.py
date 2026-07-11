@@ -1,8 +1,13 @@
-"""Robot vocals: espeak-ng per lyric line, tempo-fit to its beat slot, placed on the grid,
-mixed over the instrumental -> build/mix.wav
+"""Vocals: TTS per lyric line, tempo-fit to its beat slot, autotuned, placed on the grid,
+mixed over the instrumental.
 
-Voice concept (user request): classic robotic TTS, deliberately not human.
+Engines:
+  espeak - classic robotic TTS (default; the original ask)
+  piper  - neural human-sounding voice (en_US-ryan-high), generic voice, no cloud/keys
+
+Usage: make_vocals.py [--engine espeak|piper] [--mix-out build/mix.wav]
 """
+import argparse
 import json
 import subprocess
 import tempfile
@@ -52,6 +57,24 @@ def speakable(text: str) -> str:
     for k, v in subs.items():
         t = t.replace(k, v)
     return t
+
+
+PIPER_MODEL = "/root/piper-voices/en_US-ryan-high.onnx"
+
+
+def piper_line(text: str) -> np.ndarray:
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
+        wav_path = f.name
+    subprocess.run(
+        ["piper", "--model", PIPER_MODEL, "--output-file", wav_path],
+        input=text.encode(), check=True, capture_output=True,
+    )
+    raw = subprocess.run(
+        [FFMPEG, "-v", "error", "-i", wav_path, "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
+        capture_output=True, check=True,
+    ).stdout
+    Path(wav_path).unlink()
+    return np.frombuffer(raw, dtype=np.float32)
 
 
 def espeak_line(text: str, wpm: int, pitch: int, amp: int) -> np.ndarray:
@@ -164,6 +187,11 @@ def tempo_fit(y: np.ndarray, target_sec: float) -> np.ndarray:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--engine", choices=["espeak", "piper"], default="espeak")
+    ap.add_argument("--mix-out", default=str(BUILD / "mix.wav"))
+    args = ap.parse_args()
+
     timing = json.loads((ROOT / "timing.json").read_text())
     analysis = json.loads((ROOT / "analysis.json").read_text())
     total = int((analysis["duration_sec"] + 1) * SR)
@@ -198,7 +226,10 @@ def main() -> None:
         text = speakable(ev["tts"])
         if not text:
             continue
-        y = trim_silence(espeak_line(text, wpm, pitch, amp))
+        if args.engine == "piper":
+            y = trim_silence(piper_line(text))
+        else:
+            y = trim_silence(espeak_line(text, wpm, pitch, amp))
         slot = (ev["end"] - ev["start"]) * 0.96
         pre_len = len(y)
         y = tempo_fit(y, slot)
@@ -209,25 +240,28 @@ def main() -> None:
 
         # word-level karaoke timing: synthesize each display word alone and use its
         # trimmed length as its share of the line. "Transcription" with zero guessing.
-        words = countable_words(ev["text"])
-        if words and pre_len:
-            lens = []
-            for w in words:
-                clean = speakable(_re.sub(r"^[^\w]+|[^\w]+$", "", w) or w)
-                wy = trim_silence(espeak_line(clean, wpm, pitch, amp))
-                lens.append(max(len(wy), 1))
-            cum = np.cumsum(lens) / sum(lens)
-            ev["wf"] = [round(float(f), 4) for f in cum]
-        ev["vdur"] = round(len(y) / SR, 3)
+        # (espeak only: the rendered video's karaoke is timed to the robot take)
+        if args.engine == "espeak":
+            words = countable_words(ev["text"])
+            if words and pre_len:
+                lens = []
+                for w in words:
+                    clean = speakable(_re.sub(r"^[^\w]+|[^\w]+$", "", w) or w)
+                    wy = trim_silence(espeak_line(clean, wpm, pitch, amp))
+                    lens.append(max(len(wy), 1))
+                cum = np.cumsum(lens) / sum(lens)
+                ev["wf"] = [round(float(f), 4) for f in cum]
+            ev["vdur"] = round(len(y) / SR, 3)
 
-    # write word fractions + true vocal durations back for the renderer
-    (ROOT / "timing.json").write_text(json.dumps(timing, indent=1))
+    if args.engine == "espeak":
+        # write word fractions + true vocal durations back for the renderer
+        (ROOT / "timing.json").write_text(json.dumps(timing, indent=1))
 
     peak = np.abs(track).max()
     if peak > 0:
         track = track / peak * 0.9
     pcm = (track * 32767).astype(np.int16)
-    vocals = BUILD / "vocals.wav"
+    vocals = BUILD / ("vocals.wav" if args.engine == "espeak" else f"vocals_{args.engine}.wav")
     subprocess.run(
         [FFMPEG, "-y", "-v", "error", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(vocals)],
         input=pcm.tobytes(),
@@ -244,8 +278,10 @@ def main() -> None:
     n = min(len(inst), len(track))
     inst, voc = inst[:n], track[:n].copy()
 
-    # vocal bus: drive into tanh soft clip -> high RMS, robot grit; slap echo
-    voc = np.tanh(voc * 5.0) * 0.55
+    # vocal bus: drive into tanh soft clip -> high RMS; harder for the robot,
+    # gentler for the human voice
+    drive = 5.0 if args.engine == "espeak" else 3.2
+    voc = np.tanh(voc * drive) * 0.55
     echo = int(0.060 * SR)
     voc[echo:] += 0.22 * voc[:-echo]
 
@@ -254,17 +290,17 @@ def main() -> None:
     win = int(0.080 * SR)
     kernel = np.ones(win, dtype=np.float32) / win
     env = np.convolve(act, kernel, mode="same")
-    duck = 1.0 - 0.60 * np.clip(env / 0.06, 0, 1)
+    duck = 1.0 - 0.35 * np.clip(env / 0.06, 0, 1)
 
-    mix = inst * 0.55 * duck + voc
+    mix = inst * 0.80 * duck + voc
     mix = np.tanh(mix * 1.1) * 0.92  # gentle master saturation/limit
     pcm = (np.clip(mix, -1, 1) * 32767).astype(np.int16)
     subprocess.run(
         [FFMPEG, "-y", "-v", "error", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-",
-         str(BUILD / "mix.wav")],
+         args.mix_out],
         input=pcm.tobytes(), check=True,
     )
-    print("wrote", vocals, "and", BUILD / "mix.wav")
+    print("wrote", vocals, "and", args.mix_out)
 
 
 if __name__ == "__main__":
