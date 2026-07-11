@@ -173,6 +173,20 @@ def main() -> None:
     scale = scale_freqs_for(root)
     print(f"autotune root {root:.1f} Hz, scale: {[round(f) for f in scale]}")
 
+    import re as _re
+
+    def countable_words(text: str) -> list:
+        """Same tokenization the video's karaoke uses: split on spaces, skip
+        adlibs '(...)' and punctuation-only tokens."""
+        out = []
+        for w in text.split(" "):
+            if _re.match(r"^\(.*\)[,.!?…]*$", w):
+                continue
+            if not _re.search(r"[A-Za-z0-9]", w):
+                continue
+            out.append(w)
+        return out
+
     for ev in timing["events"]:
         wpm, pitch, amp, gain = VOICES[ev["style"]]
         text = speakable(ev["tts"])
@@ -180,11 +194,28 @@ def main() -> None:
             continue
         y = trim_silence(espeak_line(text, wpm, pitch, amp))
         slot = (ev["end"] - ev["start"]) * 0.96
+        pre_len = len(y)
         y = tempo_fit(y, slot)
         y = autotune(y, scale)
         start = int(ev["start"] * SR)
         end = min(start + len(y), total)
         track[start:end] += y[: end - start] * gain
+
+        # word-level karaoke timing: synthesize each display word alone and use its
+        # trimmed length as its share of the line. "Transcription" with zero guessing.
+        words = countable_words(ev["text"])
+        if words and pre_len:
+            lens = []
+            for w in words:
+                clean = speakable(_re.sub(r"^[^\w]+|[^\w]+$", "", w) or w)
+                wy = trim_silence(espeak_line(clean, wpm, pitch, amp))
+                lens.append(max(len(wy), 1))
+            cum = np.cumsum(lens) / sum(lens)
+            ev["wf"] = [round(float(f), 4) for f in cum]
+        ev["vdur"] = round(len(y) / SR, 3)
+
+    # write word fractions + true vocal durations back for the renderer
+    (ROOT / "timing.json").write_text(json.dumps(timing, indent=1))
 
     peak = np.abs(track).max()
     if peak > 0:

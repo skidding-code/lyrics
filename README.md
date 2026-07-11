@@ -34,9 +34,12 @@ python3 src/make_timing.py
 python3 src/make_vocals.py
 python3 src/build_page.py
 node src/render_frames.js                     # ~15 min
-ffmpeg -i build/video_noaudio.mp4 -i build/mix.wav \
-       -c:v copy -c:a aac -b:a 192k -shortest build/not-like-claude.mp4
+bash src/grade_mux.sh                         # color grade + mux
 ```
+
+Note: `make_vocals.py` must run before `build_page.py` — it writes word-level
+karaoke timings (`wf`/`vdur`, measured from per-word synthesis) back into
+`timing.json`, which the page inlines.
 
 Preview individual timestamps without a full render:
 

@@ -258,7 +258,8 @@ function lyricSpans(e){
   if(lyricCache[e.i]) return lyricCache[e.i];
   const words = e.text.split(' ').map(w=>{
     const ad = /^\(.*\)[,.!?…]*$/.test(w);
-    return {w, ad};
+    const punct = !/[A-Za-z0-9]/.test(w);
+    return {w, ad, punct};
   });
   return lyricCache[e.i]=words;
 }
@@ -404,13 +405,22 @@ function renderLyric(t,e,inHook){
   if(!e || inHook){ L.style.opacity=0; N.style.opacity=0; return; }
   const words = lyricSpans(e);
   const dur = Math.max(e.end-e.start, 0.1);
-  const prog = clamp((t-e.start)/(dur*0.92),0,1);
-  const total = words.filter(w=>!w.ad).length;
-  const done = prog*total;
+  // progress runs over the ACTUAL vocal take length when known (word-sync), else the slot
+  const vdur = e.vdur ? Math.max(e.vdur, 0.1) : dur*0.92;
+  const prog = clamp((t-e.start)/vdur,0,1);
+  const total = words.filter(w=>!w.ad && !w.punct).length;
   let html='', wi=0;
-  for(const {w,ad} of words){
+  for(const {w,ad,punct} of words){
     if(ad){ html+=`<span class="w ad">${escapeHtml(w)}</span>`; continue; }
-    const cls = wi<Math.floor(done)?'done': wi<done?'cur':'todo';
+    if(punct){ html+=`<span class="w todo">${escapeHtml(w)}</span>`; continue; }
+    let cls;
+    if(e.wf && e.wf.length===total){
+      const endF = e.wf[wi], startF = wi>0?e.wf[wi-1]:0;
+      cls = prog>=endF?'done': prog>=startF?'cur':'todo';
+    } else {
+      const done = prog*total;
+      cls = wi<Math.floor(done)?'done': wi<done?'cur':'todo';
+    }
     const curScale = cls==='cur'? 1.08:1;
     html+=`<span class="w ${cls}" style="transform:scale(${curScale})">${escapeHtml(w)}</span>`;
     wi++;
