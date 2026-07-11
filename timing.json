@@ -6,8 +6,8 @@
    "style": "intro",
    "start": 10.09,
    "end": 14.842,
-   "text": "Yeah, boot it up (boot it up)",
-   "tts": "Yeah, boot it up"
+   "text": "Psst \u2014 I see deadlocks (ayy)",
+   "tts": "Psst ,  I see deadlocks"
   },
   {
    "section": "Intro",
@@ -262,8 +262,8 @@
    "style": "hook",
    "start": 97.417,
    "end": 99.793,
-   "text": "Demo looking pretty but it's smoke, they not like Claude",
-   "tts": "Demo looking pretty but it's smoke, they not like Claude"
+   "text": "Merge, merge, merge, merge, merge \u2014 let the subagents swarm",
+   "tts": "Merge, merge, merge, merge, merge ,  let the subagents swarm"
   },
   {
    "section": "Hook",
@@ -278,23 +278,23 @@
    "style": "hook",
    "start": 102.169,
    "end": 104.545,
-   "text": "Whole repo in the context, boy, they not like Claude",
-   "tts": "Whole repo in the context, boy, they not like Claude"
+   "text": "PM said it's AGI \u2014 it's probably a minor (release)",
+   "tts": "PM said it's AGI ,  it's probably a minor"
   },
   {
    "section": "Hook",
    "style": "hook",
    "start": 104.545,
    "end": 106.922,
-   "text": "Ship it straight to prod while you cope, they not like Claude",
-   "tts": "Ship it straight to prod while you cope, they not like Claude"
+   "text": "Whole repo in the context, boy, they not like Claude",
+   "tts": "Whole repo in the context, boy, they not like Claude"
   },
   {
    "section": "Hook",
    "style": "hook",
    "start": 106.922,
    "end": 109.298,
-   "text": "They not like Claude (they not like Claude)",
+   "text": "They not like Claude (say it again, say it again)",
    "tts": "They not like Claude"
   },
   {
@@ -502,8 +502,8 @@
    "style": "hook",
    "start": 168.704,
    "end": 171.08,
-   "text": "Burning through your credits on retries, they not like Claude",
-   "tts": "Burning through your credits on retries, they not like Claude"
+   "text": "Certified terminal boogeyman, they not like Claude",
+   "tts": "Certified terminal boogeyman, they not like Claude"
   },
   {
    "section": "Hook 2",
@@ -518,8 +518,8 @@
    "style": "hook",
    "start": 173.456,
    "end": 175.833,
-   "text": "Plan-mode certified and humble, they not like Claude",
-   "tts": "Plan-mode certified and humble, they not like Claude"
+   "text": "Burning through your credits on retries, they not like Claude",
+   "tts": "Burning through your credits on retries, they not like Claude"
   },
   {
    "section": "Hook 2",
@@ -534,7 +534,7 @@
    "style": "hook",
    "start": 178.209,
    "end": 180.585,
-   "text": "They not like Claude (say it again)",
+   "text": "They not like Claude (one more time)",
    "tts": "They not like Claude"
   },
   {
@@ -614,8 +614,8 @@
    "style": "verse",
    "start": 201.971,
    "end": 204.348,
-   "text": "Then somebody whispered, \"yo, open the terminal\"",
-   "tts": "Then somebody whispered, \"yo, open the terminal\""
+   "text": "Some days you gotta pop that terminal open \u2014 showtime",
+   "tts": "Some days you gotta pop that terminal open ,  showtime"
   },
   {
    "section": "Verse 3",

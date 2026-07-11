@@ -4,7 +4,7 @@
 
 ## Intro
 
-Yeah, boot it up (boot it up)
+Psst — I see deadlocks (ayy)
 Terminal glowing, it's four in the morning
 Plan mode armed, no warnings, we pouring
 This for everybody with the context exhausted
@@ -42,11 +42,11 @@ Claude in the penthouse, refactoring's a hobby
 
 They not like Claude (they not like Claude)
 Wrapper with a system prompt, they not like Claude
-Demo looking pretty but it's smoke, they not like Claude
+Merge, merge, merge, merge, merge — let the subagents swarm
 They not like Claude (nah), they not like Claude
+PM said it's AGI — it's probably a minor (release)
 Whole repo in the context, boy, they not like Claude
-Ship it straight to prod while you cope, they not like Claude
-They not like Claude (they not like Claude)
+They not like Claude (say it again, say it again)
 Everybody claiming "agent" — they not like Claude
 
 ## Bridge
@@ -81,11 +81,11 @@ Terminal natives, we not going backwards
 
 They not like Claude (they not like Claude)
 "Agentic" on the landing page only, not like Claude
-Burning through your credits on retries, they not like Claude
+Certified terminal boogeyman, they not like Claude
 They not like Claude (nah), they not like Claude
-Plan-mode certified and humble, they not like Claude
+Burning through your credits on retries, they not like Claude
 Read the whole repo, no stumble, they not like Claude
-They not like Claude (say it again)
+They not like Claude (one more time)
 They not like Claude
 
 ## Verse 3
@@ -98,7 +98,7 @@ First we tried the chatbot with the fancy demo reel
 It apologized profusely, then it made the outage real
 Copilot suggested we should try turning it off
 Gemini summarized the incident and logged off
-Then somebody whispered, "yo, open the terminal"
+Some days you gotta pop that terminal open — showtime
 Claude read the stack trace like a Sunday journal
 Grepping through the services, mapping out the blast zone
 Found the cursed migration everybody walked past, whoa
